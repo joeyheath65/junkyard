@@ -1,0 +1,206 @@
+<html>
+	<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+	<script defer src="https://pyscript.net/latest/pyscript.js"></script>
+	<link href="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAWFhYALCwsADq6uoAAAIDAHR0dABlZWUAn5+fAOjo6AApKSkAgYGBABAPEAAaGhoAcnJyAMnKygAAAAEAtre2ADY2NgCOjo4Af39/AA4NDgAYGBgAcHBwAIyMjADk5OQAAQACAMLCwQBBQUEAe3t7ANPT0wBSUlMAU1JTAAAAAwAwMDAAOjs6ABISEgB1dXQAAwMDAFtbWwAFBQYAd3d3AAABAQDAwMAAAQEBAAEABAArLCwAHR0dANLR0gAEAwQAr6+vADk5OQCbnJsA6enpABsbGwAAAQIA5OXkAAEBAgAMDAwAra2tAPb29gCPj48AKCgoAICAgAAJCgoA4+PiAMnJyQC2trUAREREAJycnAAAAQMAAQEDAFpZWwBvb28AYGBgAJqamgDj4+MAJCQkAHx8fAAGBgYAQEBAAP///wAmJicA4eHhAGtrawDDw8MABAQEAE1NTQClpaUAlpaWAO7u7gB4eHgAAAICAAICAgA8PDwALS0tAIWFhQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFkYCDsAAAAAAAAAAAAAAEoRXiEmNAAAAAAAAAAAUAMbKyUrI1RQAAAAAAAASxZaP1ZUSSdHF0EAAAAAGEgrKytPUA1cAAA9GAAAAAgoTF81JVcVVQUyMAgAAABQBgcAAAlOFFIAUh5QAAAADi4vAABEXBIAAAA1KgAAADMlDx8kIlxDPFMMABwAAAATK0YPACkrDwAAWxkBAAAATSspKTY2NkVbAFsPAQAAAFhcKxk2NjYgKQAEKT4AAABAXRksGTY2NjYPGT0dAAAAABoLOBk2NgRFWzlCAAAAAAAAAlFcDw8PJS06AAAAAAAAAABSMT4oChA3AAAAAP4fAAD8DwAA8AcAAOADAADAAQAAwAEAAMYRAADGOQAAwAEAAMABAADAAQAAwAEAAMABAADgAwAA8AcAAPgPAAA=" rel="icon" type="image/x-icon" />
+        <py-env>
+            - paths:
+             - /todo.py
+             - /utils.py
+        </py-env>     
+<head style="background-color:#3d3d3d;">
+  <meta name="viewport" content="width=device-width, initial-scale=0">
+    <title>Jeeves</title>
+      <style>
+        .header1 {
+        width: absolute;
+        border: none;
+        background-color: #3D3D3D;
+        color: #fff;
+        text-align: center;
+        overflow: hidden;
+        }
+        .rsidebar {
+        display:inline-block;
+        right: 0;
+        bottom: 0;
+        width: 20%;
+        text-align: left;
+        text-indent: 5%;
+        background-color: #f1f1f1;
+        }
+        .mainbody {
+        display:inline-block;
+        width: 80%;
+        bottom: 100%;
+        }
+        .topnav {
+        background-color: #333;
+        overflow: hidden;
+        }
+        .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 10px 30px;
+        text-decoration: none;
+        font-size: 17px;
+        }
+        .topnav a:hover {
+          background-color: #ddd;
+          color: black;
+        }
+        .topnav a.active {
+          background-color: #637a95;
+          color: white;
+        }
+        .column-2 {
+        display:inline-block;
+          width:66.666%;
+        }
+        .column-3 {
+        display:inline-block;
+          width:33.333%;
+        }
+        .row {
+        display:inline-flex;
+          width:100%;
+          flex-wrap: wrap;
+          }
+
+        .sidebar {
+        height: 90%;
+        width: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgb(156, 155, 155);
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 220px;
+        }
+
+        .sidebar div {
+        padding: 8px 8px 8px 30px;
+        font-size: 14px;
+        display: block;
+        transition: 0.5s;
+        cursor: pointer;
+        }
+
+        .sidebar .closebtn {
+        position: absolute;
+        top: 175;
+        right: center;
+        color: #0f0;
+        font-size: 14px;
+        text-decoration-line: underline;
+        text-decoration-thickness: 10%;
+
+        }
+        .openbtn {
+          left: 100%;
+          font-size: 18px;
+          cursor: pointer;
+          background-color: rgb(156, 155, 155);
+          }
+        #main {
+        transition: margin-left .5s;
+        }
+        .dailywork {
+          position: left;
+          display: inline-block;
+        }
+        .dailywork-content {
+          display: none;
+          position: absolute;
+          background-color: #333;
+          min-width: none;
+
+          z-index: 1; 
+        }
+        .dropdown-content a { 
+          color: black; 
+          text-decoration: none; 
+          display: block; 
+        } 
+         
+        .dropdown:hover .dropdown-content { 
+          display: block; 
+        } 
+      </style>
+  <div class="header1">
+    <a class="weatherwidget-io" href="https://forecast7.com/en/29d13n98d16/floresville/?unit=us" data-label_1="FLORESVILLE" data-label_2="WEATHER" data-font="Monaco" data-theme="random_grey" data-basecolor="#3d3d3d" data-textcolor="#0f0" data-highcolor="#fd0101" data-lowcolor="#2174f7" data-suncolor="#fbf206" data-mooncolor="#dfdbda" data-cloudcolor="#f1f9fc" >FLORESVILLE WEATHER</a>
+    <script>
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+    </script>
+    <table style="width:100%">
+      <tr>
+        <th><iframe src="https://free.timeanddate.com/clock/i8n2942b/n137/fn12/ftb/fs14/fc0f0/tct/pct/pl5/pr5/th1/ts1/ta1" frameborder="0" width="25%" height="30" allowtransparency="true"></iframe></th>
+        <th><iframe src="https://free.timeanddate.com/clock/i8n2942b/n394/fn12/ftb/fs14/fc0f0/tct/pct/pl5/pr5/th1/ts1/ta1" frameborder="0" width="25%" height="30" allowtransparency="true"></iframe></th>
+        <th><iframe src="https://free.timeanddate.com/clock/i8o7pq5h/n94/fn12/ftb/fs14/fc0f0/tct/pct/pl5/pr5/th1/ts1/ta1" frameborder="0" width="25%" height="30" allowtransparency="true"></iframe></th>
+        <th><iframe src="https://free.timeanddate.com/clock/i8n2942b/n867/fn12/ftb/fs14/fc0f0/tct/pct/pl5/pr5/th1/ts1/ta1" frameborder="0" width="25%" height="30" allowtransparency="true"></iframe></th>
+      </tr>
+    </table>
+
+    </div>
+<nav>
+	<div id="mySidebar" class="sidebar">
+    <div class="closebtn" onclick="closeNav()">CLOSE</Menu></div>
+        <p></p>
+        <div onclick="location.href='home-personal.html';" style="cursor: pointer;">Home</div>
+        <div onclick="location.href='workhome.html';" style="cursor: pointer;">Work</div>
+        <div onclick="location.href='home-manage.html';" style="cursor: pointer;">Network</div>
+        <div onclick="location.href='bills.html';" style="cursor: pointer;">Bills</div>
+        <div onclick="location.href='fll-manage.html';" style="cursor: pointer;">FLL Admin</div>
+        ________________
+        <div onclick="location.href='fll-manage.html';" style="cursor: pointer;">FLL Admin</div>
+        <div onclick="location.href='fll-manage.html';" style="cursor: pointer;">FLL Admin</div>
+        <p></p>
+        <div class="dailywork">
+          <button class="openbtn">Daily Work</button>
+          <div class="dailywork-content">
+            <a href="https://amazon.coupahost.com/user/home" target="_blank" rel="noopener noreferrer">Coupa</a>
+            <a href="https://amazon.coupahost.com/user/home" target="_blank" rel="noopener noreferrer">Coupa</a>
+            <a href="https://amazon.coupahost.com/user/home" target="_blank" rel="noopener noreferrer">Coupa</a>
+            <a href="https://amazon.coupahost.com/user/home" target="_blank" rel="noopener noreferrer">Coupa</a>
+            <a href="https://amazon.coupahost.com/user/home" target="_blank" rel="noopener noreferrer">Coupa</a>
+          </div>
+        </div>
+        <select onChange="window.location.href=this.value"> 
+          <option value="https://amazon.coupahost.com/user/home" target="_blank" rel="noopener noreferrer">Coupa</option> 
+          <option value="www.prontowebsolution.com">B</option> 
+      </select> 
+
+
+          </div>
+
+      </div>
+</nav>
+</head>
+<body style="background-color:#000000;">
+
+
+
+<div id="main">
+<button class="openbtn" onclick="openNav()">Menu</button>
+</div>
+
+<script>
+function openNav() {
+document.getElementById("mySidebar").style.width = "120px";
+document.getElementById("main").style.marginLeft = "120px";
+}
+
+function closeNav() {
+document.getElementById("mySidebar").style.width = "0";
+document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+
+      <div id= "mainbody" class="mainbody">
+        <iframe name="bodyframe" src="https://w.amazon.com/bin/view/FC_IT_Finance/FieldHeadcountGuidelines/" style="position: absolute; left: 170px; top: 170px;" allowtransparency="true" border="0" scrolling="yes" width="80%" frameborder="0" height="80%" id="MyFrame"></iframe>
+
+      </div>
+</body>
+</main>
+</html>

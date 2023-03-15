@@ -1,0 +1,136 @@
+<html>
+<head>
+  <style>
+    .header {
+     height: 90px;
+     background-color: #333;
+     color: #fff;
+     text-align: justify;
+     line-height: 2.5;
+   }
+
+   .lsidebar {
+     position: fixed;
+     top: 100px;
+     left: 0;
+     bottom: 0px;
+     width: 160px;
+     text-align: center;
+     background-color: #f1f1f1;
+   }      
+   .mainhead {
+   position: fixed; 
+   top: 100px;
+   padding-top: 5px;
+   left: 170px;
+   width: 89%;
+   text-align: left;
+   text-indent: 1%;
+   bottom: 0px;
+   background-color: rgb(207, 227, 244);
+   }
+   .main {
+   position: fixed; 
+   top: 150px;
+   padding-top: 5px;
+   left: 170px;
+   width: 89%;
+   text-align: left;
+   text-indent: 1%;
+   bottom: 0px;
+   background-color: rgb(207, 227, 244);
+   }
+
+  </style>
+</head>
+<body>
+      
+  <div class="header">
+    <h1 align="center">Welcome Joe!</h1>
+
+  </div>
+
+  <div class="lsidebar">
+    <h3>Pacific</h3>
+    <iframe src="https://free.timeanddate.com/clock/i8n2942b/n137/fn7/fs20/fffff/tct/pct/ftb/pl5/pr5/th1/ts1/ta1" title="West Coast" frameborder="0" width="107" height="30" allowtransparency="true" align="justify"></iframe>
+    <h3>Mountain</h3>
+    <iframe src="https://free.timeanddate.com/clock/i8n2942b/n394/fn7/fs20/fffff/tct/pct/ftb/pl5/pr5/th1/ts1/ta1" title="ABQ and ELP" frameborder="0" width="114" height="30" allowtransparency="true"></iframe>
+    <h3>Central</h3>
+    <iframe src="https://free.timeanddate.com/clock/i8n2942b/n1921/fn7/fs20/fffff/tct/pct/ftb/pl5/pr5/th1/ts1/ta1" title="SAT" frameborder="0" width="109" height="30" allowtransparency="true"></iframe>
+    <h3>East Coast</h3>     
+    <iframe src="https://free.timeanddate.com/clock/i8n2942b/n867/fn7/fs20/fffff/tct/pct/ftb/pl5/pr5/th1/ts1/ta1" title="East Coast" frameborder="0" width="117" height="30" allowtransparency="true"></iframe>
+  <p></p>	
+    
+  </div>
+<p></p>
+
+    <div class="mainhead">
+      |  
+      <input type="text" id="mySite" size="10" placeholder=" WHID ">
+      <button class="btn" onclick="mcmbyWHID()" type="submit" formtarget="iframe"> Search WHID </button>  |
+      <input type="text" id="login" size="10" placeholder=" login ">
+      <button class="btn" onclick="mcmbyLOGIN()" type="submit" formtarget="iframe"> TE Search LoginID </button>  |
+      <input type="text" id="ytdlogin" size="10" placeholder=" WHID ">
+      <button class="btn" onclick="ytdLOGIN()" type="submit" formtarget="iframe"> Year to Date </button>  |
+      <p></p>
+      <div class="main">
+
+          <script>
+    
+            function mcmbyWHID() 
+            {  
+              var obj = document.getElementById("mySite");
+              var cmvalue = "https://mcm.amazon.com/search?fulfillment_center[predicate]=Or&fulfillment_center[values][]=" + obj.value + "&";
+              
+              window.open(cmvalue);
+            }
+            function mcmbyLOGIN() 
+            {  
+              var obj = document.getElementById("login");
+              var cmvalue = "https://mcm.amazon.com/search?technician[predicate]=In&technician[values][]=" + obj.value + "&actual_start[predicate]=GreaterThanEqual&actual_start[values][]=01%2F01%2F2022%2000%3A00&actual_end[predicate]=LessThanEqual&actual_end[values][]=12%2F31%2F2022%2000%3A00&";
+              
+              window.open(cmvalue);
+            }
+            function ytdLOGIN() 
+            {  
+              var obj = document.getElementById("ytdlogin");
+              var cmvalue = "https://mcm.amazon.com/search?technician[predicate]=In&technician[values][]=" +obj.value + "&actual_start[predicate]=GreaterThanEqual&actual_start[values][]=01%2F01%2F2023%2000%3A00&";
+              
+              window.open(cmvalue);
+
+              <iframe src="'cmvalue'" find_element
+    }
+
+
+            }
+
+          </script>
+
+
+      </div>
+
+
+
+
+
+    </div>
+
+
+
+
+</div>
+</body>
+        
+
+      
+
+
+
+
+      </div>
+      </div>
+
+      
+
+
+

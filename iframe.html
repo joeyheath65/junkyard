@@ -1,0 +1,29 @@
+<button id="btn1" >link1</button>
+<button id="btn2" >link2</button>
+<button id="btn3" >link3</button>
+
+<script>
+
+var frame = document.getElementById("frame");
+var btn1 = document.getElementById("btn1");
+var btn2 = document.getElementById("btn2");
+var btn3 = document.getElementById("btn3");
+
+btn1.addEventListener("click",link1)
+btn2.addEventListener("click",link2)
+btn3.addEventListener("click",link3)
+
+function link1(){
+frame.src="http://skynet.home/"
+}
+function link2(){
+frame.src="https://heimdall.site/"
+}
+function link3(){
+frame.src="https://pixabay.com/photo-3114729/"
+}
+
+<iframe id="frame" src="https://google.com"></iframe>
+
+    <a href="http://www.wikipedia.org/" target="frame">Link Text</a>
+<div onclick="location.href='https://unifi.ui.com/dashboard';" style="cursor: pointer;" target="frame">Unifi</div>

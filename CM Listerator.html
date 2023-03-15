@@ -1,0 +1,1713 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<link type="text/css" rel="stylesheet" href="https://m.media-amazon.com/images/G/01/oneg/assets/2.7.4/css/application.min.css" />
+
+    <link href="/css/2.0/oneg-site/site.css" rel="stylesheet">
+
+	<title>CM Listerator</title>
+
+	<style>
+	
+		.tab {
+			
+			overflow: hidden;
+			border: 1px solid #ccc;
+			background-color: #f1f1f1;
+			
+		}
+	
+		.tab button {
+			background-color: inherit;
+			float: left;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			padding: 14px 16px;
+			transition: 0.3s;
+		}
+		
+		.tab button:hover {
+			background-color: #ddd;
+		}
+		
+		.tab button.active {
+			background-color: #ccc;
+		}
+		
+		.tabcontent {
+			display: none;
+			padding: 6px 12px;
+			border: 1px solid #ccc;
+			border-top: none;
+			background-color: #ffffff
+		}
+	
+	</style>
+
+	<script>
+		function setdefault() {
+
+			var opsi = new Date();
+
+			var day = opsi.getDate();
+
+			var month = opsi.getMonth() + 1;
+
+			var year = opsi.getFullYear();
+
+			var tom = opsi.getDate() + 1;
+
+			var nxtmonth = opsi.getMonth() + 1;
+
+			var dow = opsi.getDay()
+
+			if (dow	== 5) {
+
+				tom = tom + 2;
+
+			} 
+				else if (dow == 6) {
+
+					tom = tom + 1;
+
+				}
+
+			if ((month == 4 || month == 6 || month == 9 || month == 11) && (tom == 31 || tom == 32)) {
+
+				nxtmonth = nxtmonth + 1;
+
+				tom = 1;
+
+			} 	
+				else if ((month == 2) && tom == 29) {
+
+					nxtmonth = nxtmonth + 1;
+
+					tom = 1;
+
+				} 
+					else if ((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10) && tom == 32) {
+
+						nxtmonth = nxtmonth + 1;
+
+						tom = 1;
+
+					}
+
+						else if (month == 12 && tom == 32) {
+
+							nxtmonth = 1;
+
+							tom = 1;
+
+							year = year + 1;
+
+						}
+
+			document.getElementById('dayid').value = day;
+
+			document.getElementById('monthid').value = month;
+
+			document.getElementById('nxtmid').value = nxtmonth;
+
+			document.getElementById('tomid').value = tom;
+
+			document.getElementById('yearid').value = year;
+
+			document.getElementById('daysinadvanceid').value = 5;
+			
+			document.getElementById('starthour').value = 21;
+
+			document.getElementById('endhour').value = 22;
+		}
+		
+	</script>
+
+</head>
+
+<body>
+
+<body onload="setdefault()">
+
+	<br>
+
+	<nav class="navbar delimited">
+
+		<div class="navbar-inner">
+
+			<div>
+
+							<h1>OpsTech IT CM Listerator</h1>
+
+							<h5>by lenig@<small>v2022.10.07</small>--<a href="https://sim.amazon.com/issues/OpsTechITMCM-88">version history</a></h5> 
+							
+							<small><i>based on the original MCM Listerator by zachlan@</i></small>
+
+			</div>
+
+		</div>
+
+	</nav>	
+
+<!---->
+<!-- Left Date Window-->
+<!---->
+
+	<section class="row-left4 clearfix">
+
+	<div class="span">
+
+		<div class="well">
+
+			<form>
+
+				<legend>Days in Advance:</i></legend>
+
+				<input class="input-mini" id="daysinadvanceid" type="xxxx" name="daysinadvanceid"></input>
+
+			</form>	
+						
+			<form>
+
+				<legend>Date Window:</i></legend>
+
+				<label>Start Month</label>
+
+				<input class="input-mini" id="monthid" type="mm" name="monthid"></input>
+
+				<label>Start Day</label>
+
+				<input class="input-mini" id="dayid" type="dd" name="dayid"></input>
+	
+				<label>Start Hour (UTC, in 00-24)</label>
+
+				<input class="input-mini" id="starthour" type="hh" name="starthour"></input>
+
+				<br>
+				
+				<label>End Month</label>  
+
+				<input class="input-mini" id="nxtmid" type="mm" name="nxtmid" maxlength="2"></input><br>
+
+				<label>End Day</label> 
+			
+				<input class="input-mini" id="tomid" type="dd" name="tomid" maxlength="2"></input>
+				
+				<label>End Hour (UTC, in 00-24)</label>
+
+				<input class="input-mini" id="endhour" type="hh" name="endhour"></input>
+				
+				<br>
+				
+				<label>Year</label>
+
+				<input class="input-mini" id="yearid" type="yy" name="yearid"></input>
+
+			</form>
+
+			<br><br>
+
+		</div>
+
+	</div>                 
+
+<!---->
+<!---->
+<!---->
+<!--Tabbed Content-->
+<!---->
+<!---->
+<!---->
+
+	<div>
+
+		<div>
+
+<!---->
+<!--Tab Buttons-->
+<!---->
+
+			<div class="tab">
+				
+				<button class="tablinks active" onclick="openTab(event,'Home')" id="defaultOpen">HOME</button>
+			
+				
+				<button class="tablinks" onclick="openTab(event,'L1')">LEVEL 1 TEAM REVIEW</button>
+				
+				<button class="tablinks" onclick="openTab(event,'CMBR')">CM BAR RAISER REVIEW</button>
+				
+				<button class="tablinks" onclick="openTab(event,'CodeFreeze')">CODE FREEZE REVIEW</button>
+				
+				<button class="tablinks" onclick="openTab(event,'Wildcard')">WILDCARD REVIEW</button>
+
+
+			</div>
+
+<!---->
+<!--Tab Sections-->
+<!---->
+
+<!---->
+<!--Home Tab-->
+<!---->
+
+			<div id="Home" class="tabcontent">
+			
+				<br><br>
+							
+				<h2>Welcome to the OpsTech IT CM Listerator</h2>
+				
+				<br><br>
+			
+				<h4>To begin, select a Review Option above.</h4>
+				
+				<br><br>
+				
+				<h5>Here is a brief explanation of each option's purpose:</h5>
+			
+				<br>
+				
+				<ul style="list-style-type:square;">
+				
+					<li><b><i>LEVEL 1 TEAM REVIEW</b></i> - A group of searches to show the pending queues of regional Level 1 CM approval teams.</li>
+					<li><b><i>CM BAR RAISER REVIEW</b></i> - Usable by the different Bar Raiser teams to see their CM queue.</li>
+					<li><b><i>CODE FREEZE REVIEW*</b></i> - Usable by the different "Code Freeze"/"Grey Day"/"Black Day" CM approvers to identify pending CMs as well as review past Unsuccessful CMs.</li>
+					<li><b><i>WILDCARD REVIEW*</b></i> - Searches for all CMs that contain the provided user/team alias as an approver, filtered by selectable CM statuses.</li>
+					
+				</ul>
+				
+				<br>
+				
+				<h6>* - These options utilize the date window on the left as the basis for their searches. Default window is 24 hours.</h6>
+			
+				<br><br>
+
+			</div>
+
+
+<!---->
+<!--L1 Team Review-->
+<!---->
+
+			<div id="L1" class="tabcontent">
+			
+				<br><br>
+							
+				<h3>LEVEL 1 APPROVER TEAM REVIEW
+				<h6>Queue Search Functions to support Level 1 CM Approver Teams.</h6>
+
+				<br>	
+
+				<h5>Enter the Team Identifier of a Level 1 Approver Team in the text box below, then select the button for the desired queue.</h5>
+
+				<br>
+
+				<div class="input-append">
+
+					<h6>
+				
+						opstechit- <input class="input-small" id="CML1team" type="text" placeholder="Team Identifier"> -cml1
+				
+					</h6>
+					
+					<br>
+
+					<button class="btn" onclick="getCML1review()" type="button">Regular Queue</button>
+					
+					<script>
+						function getCML1review() {
+
+							var obj = document.getElementById("CML1team");
+							
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Pending Approval&scheduled_start[predicate]=Between&scheduled_start[values][]=Next 3 Days&approver[predicate]=Or&approver[values][][assigned_approver]=opstechit-" + obj.value + "-cml1&approver[values][][status]=Waiting Approval&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+										
+					<button class="btn" onclick="getCML1unfiltered()" type="button">Full Queue</button>
+					
+					<script>
+						function getCML1unfiltered() {
+
+							var obj = document.getElementById("CML1team");
+							
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Pending Approval&approver[predicate]=Or&approver[values][][assigned_approver]=opstechit-" + obj.value + "-cml1&approver[values][][status]=Waiting Approval&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+					
+					<button class="btn" onclick="getCML1daysahead()" type="button"><i>X</i> Days Ahead Queue</button>
+					
+					<script>
+						function getCML1daysahead() {
+
+							var obj = document.getElementById("CML1team");
+							
+							var daysahead = document.getElementById("daysinadvanceid");
+							
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Pending Approval&scheduled_start[predicate]=Between&scheduled_start[values][]=Next " + daysahead.value + " Days&approver[predicate]=Or&approver[values][][assigned_approver]=opstechit-" + obj.value + "-cml1&approver[values][][status]=Waiting Approval&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+					
+					<button class="btn" onclick="getCML1datefiltered()" type="button">Date Window Queue</button>
+					
+					<script>
+						function getCML1datefiltered() {
+
+							var obj = document.getElementById("CML1team");
+							
+							var monthname = document.getElementById("monthid");
+
+							var dayname = document.getElementById("dayid");
+
+							var yearname = document.getElementById("yearid");
+
+							var tomname = document.getElementById("tomid");
+
+							var nxtmname = document.getElementById("nxtmid");
+
+							var starthour = document.getElementById("starthour");
+
+							var endhour = document.getElementById("endhour");							
+
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Pending%20Approval&scheduled_start[predicate]=Between&scheduled_start[values][]=" + monthname.value + "%2F" + dayname.value + "%2F" + yearname.value + "%20" + starthour.value + "%3A00&scheduled_start[values][]=" + nxtmname.value + "%2F" + tomname.value + "%2F" + yearname.value + "%20" + endhour.value + "%3A00&approver[predicate]=And&approver[values][][assigned_approver]=opstechit-" + obj.value + "-cml1&approver[values][][status]=Waiting Approval&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+					
+				</div>
+			
+				<br><br>
+			
+				<h5>The search buttons can be used to change how far in advance the approval queue will seek:</h5>
+			
+				<br>
+			
+				<ul style="list-style-type:square;">
+				
+					<li><b><i>Regular Queue</b></i> - This is the daily work queue for Level 1 Teams. This search shows all CMs pending approval scheduled in the next three days.</li>
+					<li><b><i>Full Queue</b></i> - This search shows all CMs pending Level 1 Team review, regardless of scheduled start.</li>
+					<li><b><i>X Days Ahead Queue</b></i> - This search shows all CMs pending Level 1 Team review, using the Days In Advance field to the left.</li>
+					<li><b><i>Date Window Queue</b></i> - This search shows all CMs pending Level 1 Team review, using the Date Window fields to the left.</li>
+					
+				</ul>
+			
+				<br>
+				
+				<hr>
+				
+				<br>
+			
+			<h3>LEVEL 1 APPROVER TEAM WEEKLY QUALITY CHECK
+				<h6>Search functions to support Team Leaders in performing weekly quality checks for their CML1 team.</h6>
+
+				<br>	
+
+				<h5>Enter the Team Identifier of a Level 1 Approver Team in the text box below, then select the button for the desired quality check function.</h5>
+
+				<br>
+
+				<div class="input-append">
+
+					<h6>
+				
+						opstechit- <input class="input-small" id="CML1team2" type="text" placeholder="Team Identifier"> -cml1
+				
+					</h6>
+					
+					<br>
+										
+					<button class="btn" onclick="getCML1unsuccessfulWQC7D()" type="button">Unsuccessful CMs - Last 7 Days</button>
+					
+					<script>
+						function getCML1unsuccessfulWQC7D() {
+
+							var obj = document.getElementById("CML1team2");
+							
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Completed&closure_code[predicate]=In&closure_code[values][]=Unsuccessful&scheduled_start[predicate]=Between&scheduled_start[values][]=Last%207%20Days&approver[predicate]=Or&approver[values][][assigned_approver]=opstechit-" + obj.value + "-cml1&approver[values][][status]=Approved&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+					
+					<button class="btn" onclick="getCML1offscriptWQC7D()" type="button">Off-Script CMs - Last 7 Days</button>
+					
+					<script>
+						function getCML1offscriptWQC7D() {
+
+							var obj = document.getElementById("CML1team2");
+												
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Completed&closure_code[predicate]=In&closure_code[values][]=Successful%20-%20Off%20Script&scheduled_start[predicate]=Between&scheduled_start[values][]=Last%207%20Days&approver[predicate]=Or&approver[values][][assigned_approver]=opstechit-" + obj.value + "-cml1&approver[values][][status]=Approved&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+					
+					<button class="btn" onclick="getCML1incompleteWQC7D()" type="button">Incomplete CMs - Last 7 Days</button>
+					
+					<script>
+						function getCML1incompleteWQC7D() {
+
+							var obj = document.getElementById("CML1team2");	
+
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Cancelled&status[values][]=Aborted&scheduled_start[predicate]=Between&scheduled_start[values][]=Last%207%20Days&approver[predicate]=Or&approver[values][][assigned_approver]=opstechit-" + obj.value + "-cml1&approver[values][][status]=Approved&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+					
+					<button class="btn" onclick="getCML1completedWQC7D()" type="button">Completed CMs - Last 7 Days</button>
+					
+					<script>
+						function getCML1completedWQC7D() {
+
+							var obj = document.getElementById("CML1team2");	
+
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Completed&scheduled_start[predicate]=Between&scheduled_start[values][]=Last%207%20Days&approver[predicate]=Or&approver[values][][assigned_approver]=opstechit-" + obj.value + "-cml1&approver[values][][status]=Approved&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+					
+					<br>
+										
+					<button class="btn" onclick="getCML1unsuccessfulWQCDW()" type="button">Unsuccessful CMs - Date Window</button>
+					
+					<script>
+						function getCML1unsuccessfulWQCDW() {
+
+							var obj = document.getElementById("CML1team2");
+							
+							var monthname = document.getElementById("monthid");
+
+							var dayname = document.getElementById("dayid");
+
+							var yearname = document.getElementById("yearid");
+
+							var tomname = document.getElementById("tomid");
+
+							var nxtmname = document.getElementById("nxtmid");
+
+							var starthour = document.getElementById("starthour");
+
+							var endhour = document.getElementById("endhour");							
+							
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Completed&closure_code[predicate]=In&closure_code[values][]=Unsuccessful&scheduled_start[predicate]=Between&scheduled_start[values][]=" + monthname.value + "%2F" + dayname.value + "%2F" + yearname.value + "%20" + starthour.value + "%3A00&scheduled_start[values][]=" + nxtmname.value + "%2F" + tomname.value + "%2F" + yearname.value + "%20" + endhour.value + "%3A00&approver[predicate]=Or&approver[values][][assigned_approver]=opstechit-" + obj.value + "-cml1&approver[values][][status]=Approved&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+					
+					<button class="btn" onclick="getCML1offscriptWQCDW()" type="button">Off-Script CMs - Date Window</button>
+					
+					<script>
+						function getCML1offscriptWQCDW() {
+
+							var obj = document.getElementById("CML1team2");
+							
+							var monthname = document.getElementById("monthid");
+
+							var dayname = document.getElementById("dayid");
+
+							var yearname = document.getElementById("yearid");
+
+							var tomname = document.getElementById("tomid");
+
+							var nxtmname = document.getElementById("nxtmid");
+							
+							var starthour = document.getElementById("starthour");
+
+							var endhour = document.getElementById("endhour");							
+							
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Completed&closure_code[predicate]=In&closure_code[values][]=Successful%20-%20Off%20Script&scheduled_start[predicate]=Between&scheduled_start[values][]=" + monthname.value + "%2F" + dayname.value + "%2F" + yearname.value + "%20" + starthour.value + "%3A00&scheduled_start[values][]=" + nxtmname.value + "%2F" + tomname.value + "%2F" + yearname.value + "%20" + endhour.value + "%3A00&approver[predicate]=Or&approver[values][][assigned_approver]=opstechit-" + obj.value + "-cml1&approver[values][][status]=Approved&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+					
+					<button class="btn" onclick="getCML1incompleteWQCDW()" type="button">Incomplete CMs - Date Window</button>
+					
+					<script>
+						function getCML1incompleteWQCDW() {
+
+							var obj = document.getElementById("CML1team2");	
+
+							var monthname = document.getElementById("monthid");
+
+							var dayname = document.getElementById("dayid");
+
+							var yearname = document.getElementById("yearid");
+
+							var tomname = document.getElementById("tomid");
+
+							var nxtmname = document.getElementById("nxtmid");
+
+							var starthour = document.getElementById("starthour");
+
+							var endhour = document.getElementById("endhour");							
+
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Cancelled&status[values][]=Aborted&scheduled_start[predicate]=Between&scheduled_start[values][]=" + monthname.value + "%2F" + dayname.value + "%2F" + yearname.value + "%20" + starthour.value + "%3A00&scheduled_start[values][]=" + nxtmname.value + "%2F" + tomname.value + "%2F" + yearname.value + "%20" + endhour.value + "%3A00&approver[predicate]=Or&approver[values][][assigned_approver]=opstechit-" + obj.value + "-cml1&approver[values][][status]=Approved&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+					
+					<button class="btn" onclick="getCML1completedWQCDW()" type="button">Completed CMs - Date Window</button>
+					
+					<script>
+						function getCML1completedWQCDW() {
+
+							var obj = document.getElementById("CML1team2");	
+
+							var monthname = document.getElementById("monthid");
+
+							var dayname = document.getElementById("dayid");
+
+							var yearname = document.getElementById("yearid");
+
+							var tomname = document.getElementById("tomid");
+
+							var nxtmname = document.getElementById("nxtmid");
+
+							var starthour = document.getElementById("starthour");
+
+							var endhour = document.getElementById("endhour");							
+
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Completed&scheduled_start[predicate]=Between&scheduled_start[values][]=" + monthname.value + "%2F" + dayname.value + "%2F" + yearname.value + "%20" + starthour.value + "%3A00&scheduled_start[values][]=" + nxtmname.value + "%2F" + tomname.value + "%2F" + yearname.value + "%20" + endhour.value + "%3A00&approver[predicate]=Or&approver[values][][assigned_approver]=opstechit-" + obj.value + "-cml1&approver[values][][status]=Approved&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+					
+				</div>
+			
+				<br><br>
+			
+				<h5>The search buttons can be used to select what type of CMs will be shown for the quality check:</h5>
+			
+				<br>
+			
+				<ul style="list-style-type:square;">
+				
+					<li><b><i>Unsuccessful CMs</b></i> - This search shows all CMs approved by the CML1 team that are closed as "Unsuccessful" in the last week</li>
+					<li><b><i>Off-Script CMs</b></i> - This search shows all CMs approved by the CML1 team that are closed as "Off-Script" in the last week</li>
+					<li><b><i>Incomplete CMs</b></i> - This search shows all CMs approved by the CML1 team in the last week that were closed with the "Cancelled" or "Aborted" statuses</li>
+					<li><b><i>Completed CMs</b></i> - This search shows all CMs approved by the CML1 team in the last week that were completed</li>
+					<li>The "7 Days" search function is used for the standard Weekly Quality Check. The "Date Window" search function can be used for larger-scale reviews based on the left Date Window fields.</li>
+					
+				</ul>
+			
+				<br>
+			
+			</div>
+
+<!---->
+<!--CM Bar Raiser Review-->
+<!---->
+
+			<div id="CMBR" class="tabcontent">
+			
+				<br><br>
+				
+				<h3>CM BAR RAISER REVIEW</h3>
+				<h6>Search options used to view the queues for each CM Bar Raiser Team.</h6>
+
+				<br>		
+
+				<h5>Select a CM Bar Raiser Team from the options below, then click one of the search buttons. Use the date window on the left to modify the search range.</h5>
+
+				<br>
+
+				<div class="input-append">
+
+					<h6>
+				
+						<input type="radio" name="BRteam" value="na"> NA 
+						<input type="radio" name="BRteam" value="eu"> EU
+						<input type="radio" name="BRteam" value="uk"> UK
+						<input type="radio" name="BRteam" value="in"> IN
+						<input type="radio" name="BRteam" value="apac"> APAC
+						<input type="radio" name="BRteam" value="itrss"> IO [ITRSS]
+						<input type="radio" name="BRteam" value="opstechit"> IO [OpsTechIT-L3]
+				
+					</h6>
+
+					<br>
+					
+					<button class="btn" onclick="getCMBRfiltered()" type="button">Regular Queue - Filtered</button>
+					
+					<script>
+						function getCMBRfiltered() {
+
+							var type = document.getElementsByName("BRteam");
+							
+							var brAlias
+							
+							if(type[0].checked) {
+							
+								brAlias = type[0].value;
+							
+							}
+							else if(type[1].checked) {
+							
+								brAlias = type[1].value;
+							
+							}
+							else if(type[2].checked) {
+							
+								brAlias = type[2].value;
+							
+							}
+							else if(type[3].checked) {
+							
+								brAlias = type[3].value;
+							
+							}
+							else if(type[4].checked) {
+							
+								brAlias = type[4].value;
+							
+							}
+							else if(type[5].checked) {
+							
+								brAlias = type[5].value;
+							
+							}
+							else if(type[6].checked) {
+							
+								brAlias = type[6].value;
+							
+							}
+														
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Pending Approval&scheduled_start[predicate]=Between&scheduled_start[values][]=Next 1 Days&approver[predicate]=And&approver[values][][assigned_approver]=" + brAlias + "-l3-cm-br&approver[values][][level]=Three&approver[values][][status]=Waiting%20Approval&approver[values][][level]=One&approver[values][][status]=Approved&approver[values][][level]=Two&approver[values][][status]=Approved&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+					
+					<button class="btn" onclick="getCMBRunfiltered()" type="button">Regular Queue - Unfiltered</button>
+					
+					<script>
+						function getCMBRunfiltered() {
+
+							var type = document.getElementsByName("BRteam");
+							
+							var brAlias
+							
+							if(type[0].checked) {
+							
+								brAlias = type[0].value;
+							
+							}
+							else if(type[1].checked) {
+							
+								brAlias = type[1].value;
+							
+							}
+							else if(type[2].checked) {
+							
+								brAlias = type[2].value;
+							
+							}
+							else if(type[3].checked) {
+							
+								brAlias = type[3].value;
+							
+							}
+							else if(type[4].checked) {
+							
+								brAlias = type[4].value;
+							
+							}
+							else if(type[5].checked) {
+							
+								brAlias = type[5].value;
+							
+							}
+							else if(type[6].checked) {
+							
+								brAlias = type[6].value;
+							
+							}
+														
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Pending Approval&scheduled_start[predicate]=Between&scheduled_start[values][]=Next 1 Days&approver[predicate]=And&approver[values][][assigned_approver]=" + brAlias + "-l3-cm-br&approver[values][][status]=Waiting Approval&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+
+					<button class="btn" onclick="getCMBRdaysahead()" type="button"><i>X</i> Days Ahead Queue</button>
+					
+					<script>
+						function getCMBRdaysahead() {
+
+							var type = document.getElementsByName("BRteam");
+							
+							var brAlias
+							
+							if(type[0].checked) {
+							
+								brAlias = type[0].value;
+							
+							}
+							else if(type[1].checked) {
+							
+								brAlias = type[1].value;
+							
+							}
+							else if(type[2].checked) {
+							
+								brAlias = type[2].value;
+							
+							}
+							else if(type[3].checked) {
+							
+								brAlias = type[3].value;
+							
+							}
+							else if(type[4].checked) {
+							
+								brAlias = type[4].value;
+							
+							}
+							else if(type[5].checked) {
+							
+								brAlias = type[5].value;
+							
+							}
+							else if(type[6].checked) {
+							
+								brAlias = type[6].value;
+							
+							}
+							
+							var daysahead = document.getElementById("daysinadvanceid");
+							
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Pending Approval&scheduled_start[predicate]=Between&scheduled_start[values][]=Next " + daysahead.value + " Days&approver[predicate]=And&approver[values][][assigned_approver]=" + brAlias + "-l3-cm-br&approver[values][][level]=Three&approver[values][][status]=Waiting%20Approval&approver[values][][level]=One&approver[values][][status]=Approved&approver[values][][level]=Two&approver[values][][status]=Approved&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+
+					<button class="btn" onclick="getCMBRdatefiltered()" type="button">Date Window Queue</button>
+					
+					<script>
+						function getCMBRdatefiltered() {
+
+							var type = document.getElementsByName("BRteam");
+							
+							var brAlias
+							
+							if(type[0].checked) {
+							
+								brAlias = type[0].value;
+							
+							}
+							else if(type[1].checked) {
+							
+								brAlias = type[1].value;
+							
+							}
+							else if(type[2].checked) {
+							
+								brAlias = type[2].value;
+							
+							}
+							else if(type[3].checked) {
+							
+								brAlias = type[3].value;
+							
+							}
+							else if(type[4].checked) {
+							
+								brAlias = type[4].value;
+							
+							}
+							else if(type[5].checked) {
+							
+								brAlias = type[5].value;
+							
+							}
+							else if(type[6].checked) {
+							
+								brAlias = type[6].value;
+							
+							}
+
+							var monthname = document.getElementById("monthid");
+
+							var dayname = document.getElementById("dayid");
+
+							var yearname = document.getElementById("yearid");
+
+							var tomname = document.getElementById("tomid");
+
+							var nxtmname = document.getElementById("nxtmid");	
+
+							var starthour = document.getElementById("starthour");
+
+							var endhour = document.getElementById("endhour");							
+
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Pending%20Approval&scheduled_start[predicate]=Between&scheduled_start[values][]=" + monthname.value + "%2F" + dayname.value + "%2F" + yearname.value + "%20" + starthour.value + "%3A00&scheduled_start[values][]=" + nxtmname.value + "%2F" + tomname.value + "%2F" + yearname.value + "%20" + endhour.value + "%3A00&approver[predicate]=And&approver[values][][assigned_approver]=" + brAlias + "-l3-cm-br&approver[values][][level]=Three&approver[values][][status]=Waiting%20Approval&approver[values][][level]=One&approver[values][][status]=Approved&approver[values][][level]=Two&approver[values][][status]=Approved&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+											
+				</div>
+				
+				<br><br>
+			
+				<h5>These two searches are used to view the daily queue and overall queue for each BR Team:</h5>
+			
+				<br>
+			
+				<ul style="list-style-type:square;">
+				
+					<li><b><i>Regular Queue - Filtered</b></i> - This shows CMs that are pending BR review, scheduled in the next 24 hours, where there is approval from at least one Level 1 Approver and one Level 2 Approver.</li>
+					<li><b><i>Regular Queue - Unfiltered</b></i> - This shows all CMs pending BR review, scheduled in the next 24 hours, regardless of prerequisite approver statuses.</li>
+					<li><b><i>X Days Ahead Queue</b></i> - This shows CMs pending BR review, filtered for prerequisite approvers in place, scheduled based on the left Days in Advance field.</li>
+					<li><b><i>Date Window Queue</b></i> - This shows CMs pending BR review, filtered for prerequissite approvers in place, scheduled based on the left Date Window fields.</li>
+					
+				</ul>
+			
+				<br><br>
+			
+			</div>
+
+<!---->
+<!--Code Freeze Review-->
+<!---->
+			
+			<div id="CodeFreeze" class="tabcontent">
+			
+				<br><br>
+				
+				<h3>CODE FREEZE REVIEW</h3> 
+				<h6>Searches used for finding CMs reviewable by the various Code Freeze Restricted Day and Blocked Day Approvers.</h6>
+
+				<br>
+				
+				<h5>Select one of the approvers from the options below, sorted by Day Type role, then click one of the search buttons. Use the Date Window on the left to modify the search range.</h5>
+				
+				<br>
+				
+				<div class="input-append">
+								
+						<h5>Restricted Day Approvers:</h5>
+						
+						<br>
+						
+						<h6>
+							<input type="radio" name="CFteam" value="opstechit-na-l7"> opstechit-na-l7 
+							<input type="radio" name="CFteam" value="opstechit-emea-l7"> opstechit-emea-l7
+							<input type="radio" name="CFteam" value="opstechit-in-l7"> opstechit-in-l7
+							<input type="radio" name="CFteam" value="opstechit-apac-l7"> opstechit-apac-l7
+							<input type="radio" name="CFteam" value="opstechit-core-l7"> opstechit-core-l7
+						</h6>
+						
+						<br>
+						
+						<h5>Blocked Day Approvers:</h5>
+						
+						<br>
+						
+						<h6>
+							<input type="radio" name="CFteam" value="readgleq"> readgleq
+							<input type="radio" name="CFteam" value="manf"> manf
+							<input type="radio" name="CFteam" value="opstechit-in-l7&approver[values][][assigned_approver]=kishorel"> kishorel-IN
+							<input type="radio" name="CFteam" value="opstechit-apac-l7&approver[values][][assigned_approver]=kishorel"> kishorel-APAC
+							<input type="radio" name="CFteam" value="jeffreya"> jeffreya
+						</h6>
+						
+					<br>
+
+					<button class="btn" onclick="getCF()" type="button">Call Review - Filtered</button>
+
+					<script>
+						function getCF() {
+
+							var type = document.getElementsByName("CFteam");
+							
+							var cfAlias
+							
+							if(type[0].checked) {
+							
+								cfAlias = type[0].value;
+							
+							}
+							else if(type[1].checked) {
+							
+								cfAlias = type[1].value;
+							
+							}
+							else if(type[2].checked) {
+							
+								cfAlias = type[2].value;
+							
+							}
+							else if(type[3].checked) {
+							
+								cfAlias = type[3].value;
+							
+							}
+							else if(type[4].checked) {
+							
+								cfAlias = type[4].value;
+							
+							}
+							else if(type[5].checked) {
+							
+								cfAlias = type[5].value;
+							
+							}
+							else if(type[6].checked) {
+							
+								cfAlias = type[6].value;
+							
+							}
+							else if(type[7].checked) {
+							
+								cfAlias = type[7].value;
+							
+							}
+							else if(type[8].checked) {
+							
+								cfAlias = type[8].value;
+							
+							}
+							else if(type[9].checked) {
+							
+								cfAlias = type[9].value;
+							
+							}
+							else if(type[10].checked) {
+							
+								cfAlias = type[10].value;
+							
+							}
+
+							var monthname = document.getElementById("monthid");
+
+							var dayname = document.getElementById("dayid");
+
+							var yearname = document.getElementById("yearid");
+
+							var tomname = document.getElementById("tomid");
+
+							var nxtmname = document.getElementById("nxtmid");	
+
+							var starthour = document.getElementById("starthour");
+
+							var endhour = document.getElementById("endhour");							
+
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Pending%20Approval&scheduled_start[predicate]=Between&scheduled_start[values][]=" + monthname.value + "%2F" + dayname.value + "%2F" + yearname.value + "%20" + starthour.value + "%3A00&scheduled_start[values][]=" + nxtmname.value + "%2F" + tomname.value + "%2F" + yearname.value + "%20" + endhour.value + "%3A00&approver[predicate]=And&approver[values][][assigned_approver]=" + cfAlias +"&approver[values][][level]=Three&approver[values][][status]=Waiting%20Approval&approver[values][][level]=One&approver[values][][status]=Approved&approver[values][][level]=Two&approver[values][][status]=Approved&approver[values][][level]=Three&approver[values][][status]=Approved&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+
+					<button class="btn" onclick="getCFunf()" type="button">Call Review - Unfiltered</button>
+
+					<script>
+						function getCFunf() {
+
+							var type = document.getElementsByName("CFteam");
+							
+							var cfAlias
+							
+							if(type[0].checked) {
+							
+								cfAlias = type[0].value;
+							
+							}
+							else if(type[1].checked) {
+							
+								cfAlias = type[1].value;
+							
+							}
+							else if(type[2].checked) {
+							
+								cfAlias = type[2].value;
+							
+							}
+							else if(type[3].checked) {
+							
+								cfAlias = type[3].value;
+							
+							}
+							else if(type[4].checked) {
+							
+								cfAlias = type[4].value;
+							
+							}
+							else if(type[5].checked) {
+							
+								cfAlias = type[5].value;
+							
+							}
+							else if(type[6].checked) {
+							
+								cfAlias = type[6].value;
+							
+							}
+							else if(type[7].checked) {
+							
+								cfAlias = type[7].value;
+							
+							}
+							else if(type[8].checked) {
+							
+								cfAlias = type[8].value;
+							
+							}
+							else if(type[9].checked) {
+							
+								cfAlias = type[9].value;
+							
+							}
+							else if(type[10].checked) {
+							
+								cfAlias = type[10].value;
+							
+							}
+
+							var monthname = document.getElementById("monthid");
+
+							var dayname = document.getElementById("dayid");
+
+							var yearname = document.getElementById("yearid");
+
+							var tomname = document.getElementById("tomid");
+
+							var nxtmname = document.getElementById("nxtmid");		
+
+							var starthour = document.getElementById("starthour");
+
+							var endhour = document.getElementById("endhour");							
+
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Pending%20Approval&scheduled_start[predicate]=Between&scheduled_start[values][]=" + monthname.value + "%2F" + dayname.value + "%2F" + yearname.value + "%20" + starthour.value + "%3A00&scheduled_start[values][]=" + nxtmname.value + "%2F" + tomname.value + "%2F" + yearname.value + "%20" + endhour.value + "%3A00&approver[predicate]=And&approver[values][][assigned_approver]=" + cfAlias + "&approver[values][][level]=Three&approver[values][][status]=Waiting%20Approval&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+					
+					<button class="btn" onclick="getCFu24()" type="button">Failed CMs - 24 Hours</button>
+					
+					<script>
+						function getCFu24() {
+
+							var type = document.getElementsByName("CFteam");
+							
+							var cfAlias
+							
+							if(type[0].checked) {
+							
+								cfAlias = type[0].value;
+							
+							}
+							else if(type[1].checked) {
+							
+								cfAlias = type[1].value;
+							
+							}
+							else if(type[2].checked) {
+							
+								cfAlias = type[2].value;
+							
+							}
+							else if(type[3].checked) {
+							
+								cfAlias = type[3].value;
+							
+							}
+							else if(type[4].checked) {
+							
+								cfAlias = type[4].value;
+							
+							}
+							else if(type[5].checked) {
+							
+								cfAlias = type[5].value;
+							
+							}
+							else if(type[6].checked) {
+							
+								cfAlias = type[6].value;
+							
+							}
+							else if(type[7].checked) {
+							
+								cfAlias = type[7].value;
+							
+							}
+							else if(type[8].checked) {
+							
+								cfAlias = type[8].value;
+							
+							}	
+							else if(type[9].checked) {
+							
+								cfAlias = type[9].value;
+							
+							}
+							else if(type[10].checked) {
+							
+								cfAlias = type[10].value;
+							
+							}	
+
+							var cmvalue = "https://mcm.amazon.com/search?closure_code[predicate]=In&closure_code[values][]=Unsuccessful&scheduled_start[predicate]=Between&scheduled_start[values][]=Yesterday&approver[predicate]=And&approver[values][][assigned_approver]=" + cfAlias +"&approver[values][][level]=Three&approver[values][][status]=Approved&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+
+					<button class="btn" onclick="getCFu3D()" type="button">Failed CMs - Weekend</button>
+					
+					<script>						
+						function getCFu3D() {
+
+							var type = document.getElementsByName("CFteam");
+							
+							var cfAlias
+							
+							if(type[0].checked) {
+							
+								cfAlias = type[0].value;
+							
+							}
+							else if(type[1].checked) {
+							
+								cfAlias = type[1].value;
+							
+							}
+							else if(type[2].checked) {
+							
+								cfAlias = type[2].value;
+							
+							}
+							else if(type[3].checked) {
+							
+								cfAlias = type[3].value;
+							
+							}
+							else if(type[4].checked) {
+							
+								cfAlias = type[4].value;
+							
+							}
+							else if(type[5].checked) {
+							
+								cfAlias = type[5].value;
+							
+							}
+							else if(type[6].checked) {
+							
+								cfAlias = type[6].value;
+							
+							}
+							else if(type[7].checked) {
+							
+								cfAlias = type[7].value;
+							
+							}
+							else if(type[8].checked) {
+							
+								cfAlias = type[8].value;
+							
+							}
+							else if(type[9].checked) {
+							
+								cfAlias = type[9].value;
+							
+							}
+							else if(type[10].checked) {
+							
+								cfAlias = type[10].value;
+							
+							}
+
+							var cmvalue = "https://mcm.amazon.com/search?closure_code[predicate]=In&closure_code[values][]=Unsuccessful&scheduled_start[predicate]=Between&scheduled_start[values][]=Last%203%20Days&approver[predicate]=And&approver[values][][assigned_approver]=" + cfAlias +"&approver[values][][level]=Three&approver[values][][status]=Approved&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+
+				</div>					
+				
+				<br><br>
+			
+				<h5>The Code Freeze search has two options for queue management and two options for identifying past Unsuccessful CMs:</h5>
+			
+				<br>
+			
+				<ul style="list-style-type:square;">
+				
+					<li><b><i>Call Review - Filtered</b></i> - This shows CMs pending Code Freeze review, scheduled using the left Date Window, where there is approval from at least one Level 1 Approver, one Level 2 Approver, and one Level 3 Approver.</li>
+					<li><b><i>Call Review - Unfiltered</b></i> - This shows all CMs pending Code Freeze review, scheduled using the left Date Window, regardless of prerequisite approver statuses.</li>
+					<li><b><i>Failed CMs - 24 Hours</b></i> - This search looks for all Unsuccessful CMs approved by the selected Code Freeze approve within the last 24 hours.</li>
+					<li><b><i>Failed CMs - Weekend</b></i> - This search looks for all Unsuccessful CMs approved by the selected Code Freeze approver within the last three days. Best for reviewing on Mondays.</li>
+					
+				</ul>
+			
+				<br>
+				
+				<h5>For more information on the OpsTech IT Code Freeze process, view the Policy document <a href="https://policy.amazon.com/standard/41910">[here]</a>.</h5>
+				
+				<br><br>
+
+			</div>
+
+<!---->
+<!--Wildcard Review-->
+<!---->
+
+			<div id="Wildcard" class="tabcontent">
+			
+				<br><br>
+			
+				<h3>WILDCARD REVIEW</h3>
+				<h6>An open search for a provided user/alias filtered by Approval need, CM status, and date window</h6>
+				
+				<br>
+				
+				<h5>Enter an approver login or alias, select at least one CM status, then click one of the search buttons. Use the date window on the left to modify the search range.</h5>
+				
+				<br>
+
+				<div class="input-append">
+				
+					<input class="input-medium" id="anyAlias" type="text" placeholder="Approval Alias/Login">
+					
+					<button class="btn" onclick="getPendingWildcardDIA()" type="button">Pending Approval - <i>X</i> Days Ahead</button>
+					
+					<script>
+						
+						function getPendingWildcardDIA() {
+
+							var checks = document.getElementsByClassName('checks');
+							
+							var str = '&';
+							
+							for(i = 0; i < 9; i++) {
+							
+								if(checks[i].checked === true) {
+								
+									str += checks[i].value + "&";
+								
+								}
+							
+							}
+
+							var daysahead = document.getElementById("daysinadvanceid");
+
+							var obj = document.getElementById("anyAlias");
+
+							var cmvalue = "https://mcm.amazon.com/search?scheduled_start[predicate]=Between&scheduled_start[values][]=Next " + daysahead.value + " Days&approver[predicate]=Or&approver[values][][assigned_approver]=" + obj.value + "&approver[values][][status]=Waiting%20Approval&status[predicate]=In&status[values][]" + str + "num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+						
+					</script>
+					
+					<button class="btn" onclick="getPendingWildcardDW()" type="button">Pending Approval - Date Window</button>
+					
+					<script>
+						
+						function getPendingWildcardDW() {
+
+							var checks = document.getElementsByClassName('checks');
+							
+							var str = '&';
+							
+							for(i = 0; i < 9; i++) {
+							
+								if(checks[i].checked === true) {
+								
+									str += checks[i].value + "&";
+								
+								}
+							
+							}
+
+							var monthname = document.getElementById("monthid");
+
+							var dayname = document.getElementById("dayid");
+
+							var yearname = document.getElementById("yearid");
+
+							var tomname = document.getElementById("tomid");
+
+							var nxtmname = document.getElementById("nxtmid");
+
+							var obj = document.getElementById("anyAlias");
+							
+							var starthour = document.getElementById("starthour");
+
+							var endhour = document.getElementById("endhour");							
+
+							var cmvalue = "https://mcm.amazon.com/search?scheduled_start[predicate]=Between&scheduled_start[values][]=" + monthname.value + "%2F" + dayname.value + "%2F" + yearname.value + "%20" + starthour.value + "%3A00&scheduled_start[values][]=" + nxtmname.value + "%2F" + tomname.value + "%2F" + yearname.value + "%20" + endhour.value + "%3A00&approver[predicate]=Or&approver[values][][assigned_approver]=" + obj.value + "&approver[values][][status]=Waiting%20Approval&status[predicate]=In&status[values][]" + str + "num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+						
+					</script>
+					
+					<button class="btn" onclick="getAllWildcardDIA()" type="button">All CMs - <i>X</i> Days Ahead</button>
+				
+					<script>
+						
+						function getAllWildcardDIA() {
+
+							var checks = document.getElementsByClassName('checks');
+							
+							var str = '&';
+							
+							for(i = 0; i < 9; i++) {
+							
+								if(checks[i].checked === true) {
+								
+									str += checks[i].value + "&";
+								
+								}
+							
+							}
+
+							var daysahead = document.getElementById("daysinadvanceid");
+
+							var obj = document.getElementById("anyAlias");
+
+							var cmvalue = "https://mcm.amazon.com/search?scheduled_start[predicate]=Between&scheduled_start[values][]=Next " + daysahead.value + " Days&approver[predicate]=Or&approver[values][][assigned_approver]=" + obj.value + "&status[predicate]=In&status[values][]" + str + "num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+						
+					</script>
+					
+					<button class="btn" onclick="getAllWildcardDW()" type="button">All CMs - Date Window</button>
+				
+					<script>
+						
+						function getAllWildcardDW() {
+
+							var checks = document.getElementsByClassName('checks');
+							
+							var str = '&';
+							
+							for(i = 0; i < 9; i++) {
+							
+								if(checks[i].checked === true) {
+								
+									str += checks[i].value + "&";
+								
+								}
+							
+							}
+
+							var monthname = document.getElementById("monthid");
+
+							var dayname = document.getElementById("dayid");
+
+							var yearname = document.getElementById("yearid");
+
+							var tomname = document.getElementById("tomid");
+
+							var nxtmname = document.getElementById("nxtmid");
+
+							var starthour = document.getElementById("starthour");
+
+							var endhour = document.getElementById("endhour");							
+
+							var obj = document.getElementById("anyAlias");
+
+							var cmvalue = "https://mcm.amazon.com/search?scheduled_start[predicate]=Between&scheduled_start[values][]=" + monthname.value + "%2F" + dayname.value + "%2F" + yearname.value + "%20" + starthour.value + "%3A00&scheduled_start[values][]=" + nxtmname.value + "%2F" + tomname.value + "%2F" + yearname.value + "%20" + endhour.value + "%3A00&approver[predicate]=Or&approver[values][][assigned_approver]=" + obj.value + "&status[predicate]=In&status[values][]" + str + "num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+						
+					</script>
+					
+				</div>
+			
+				<br><br>
+				
+				<h5>Select the CM Statuses this search should check for:</h5>
+				
+				<br>
+				
+				<div class="input-append">
+				
+					<h6>
+						<span id="allCheck"></span><input type="checkbox" onclick="statusBoxes()" id="parent_wcstat_chkbx" /> SELECT/DESELECT All 
+						 | <input type="checkbox" class="checks" id="wcstat_chkbx" value="status[values][]=Arrived&status[values][]=Preflight"> Draft/Preflight      
+						<input type="checkbox" class="checks" id="wcstat_chkbx" value="status[values][]=Pending%20Approval"> Pending Approval      
+						<input type="checkbox" class="checks" id="wcstat_chkbx" value="status[values][]=Scheduled&status[values][]=Scheduled%20-%20Approved%20with%20comments"> Scheduled      
+						<input type="checkbox" class="checks" id="wcstat_chkbx" value="status[values][]=Now%20In%20Progress"> In Progress      
+						<input type="checkbox" class="checks" id="wcstat_chkbx" value="status[values][]=Sent%20for%20rework"> Sent For Rework      
+						<input type="checkbox" class="checks" id="wcstat_chkbx" value="status[values][]=Rejected"> Rejected      
+						<input type="checkbox" class="checks" id="wcstat_chkbx" value="status[values][]=Paused&status[values][]=Aborted"> Paused/Aborted      
+						<input type="checkbox" class="checks" id="wcstat_chkbx" value="status[values][]=Cancelled"> Cancelled      
+						<input type="checkbox" class="checks" id="wcstat_chkbx" value="status[values][]=Completed"> Completed      
+					</h6>
+				
+				</div>
+
+				<script>
+					function statusBoxes() {
+						
+						var parent = document.getElementById("parent_wcstat_chkbx");
+						
+						var label = document.getElementById("allCheck");
+						
+						var input = document.getElementsByTagName("input");
+						
+						if(parent.checked === true) {
+							
+							for(var i = 0; i < input.length; i++) {
+								
+								if(input[i].type== "checkbox" && input[i].id == "wcstat_chkbx" && input[i].checked == false) {
+									
+									input[i].checked = true;
+								
+								}
+							
+							}
+						
+						}
+						
+						else if(parent.checked === false) {
+							
+							for(var i = 0; i < input.length; i++) {
+								
+								if(input[i].type== "checkbox" && input[i].id == "wcstat_chkbx" && input[i].checked == true) {
+									
+									input[i].checked = false;
+								
+								}
+							
+							}
+						
+						}
+					
+					}
+				</script>
+
+				<br><br>
+				
+				<h5>This search has two main functions, further divided by date-based filters:</h5>
+				
+				<ul style="list-style-type:square;">
+				
+					<li><b><i>Pending Approval - X Days Ahead</i></b> - Searches CMs where the provided user/alias is Pending Approval, filtered by selected CM statuses and the left Days in Advance field</li>
+					<li><b><i>Pending Approval - Date Window</i></b> - Searches CMs where the provided user/alias is Pending Approval, filtered by selected CM statuses and the left Date Window fields</li>
+					<li><b><i>All CMs - X Days Ahead</i></i></b> - Searches all CMs where the provided user/alias is on the approval chain, regardless of approval status, filtered by selected CM statuses and the left Days in Advance field</li>
+					<li><b><i>All CMs - Date Window</i></b> - Searches all CMs where the provided user/alias is on the approval chain, regardless of approval status, filtered by selected CM statuses and the left Date Window fields</li>
+				
+				</ul>
+				
+				<br><br>
+
+			</div>
+
+<!---->
+<!--Tab Functions-->
+<!---->
+
+			<script>
+			
+				function openTab(evt, tabName) {
+					
+					var t, tabcontent, tablinks;
+				
+					tabcontent = document.getElementsByClassName("tabcontent");
+					
+					for (t = 0; t < tabcontent.length; t++) {
+						tabcontent[t].style.display = "none";
+					}
+					
+					tablinks = document.getElementsByClassName("tablinks");
+					
+					for (t = 0; t < tablinks.length; t++) {
+						tablinks[t].className = tablinks[t].className.replace(" active", "");
+					}
+					
+					document.getElementById(tabName).style.display = "block";
+					evt.currentTarget.className += " active";
+				
+				}
+				
+				document.getElementById("defaultOpen").click();
+			
+			</script>
+
+		</div>
+
+	</div>
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+
+
+<!---->
+<!--Additional Search Utilities-->
+<!---->
+	<div class="span">
+
+		<div class="well">
+
+			<div class="page-header">
+
+				<h4>ADDITIONAL SEARCHES</h4>
+
+			</div>
+
+			<div class="page-header">
+
+<!---->
+<!--All WHID CMs-->
+<!---->
+
+				<div class="input-append">
+
+					<input type="text" id="mySite" size="4" type="text" placeholder="WHID"><button class="btn" onclick="getAllWHID()" type="button">All Site CMs</button>
+					
+					<script>
+						function getAllWHID() {
+
+							var obj = document.getElementById("mySite");
+
+							var monthname = document.getElementById("monthid");
+
+							var dayname = document.getElementById("dayid");
+
+							var yearname = document.getElementById("yearid");
+
+							var cmvalue = "https://mcm.amazon.com/search?cm_title[predicate]=Equals&cm_title[values][]=" + obj.value + "&scheduled_start[predicate]=GreaterThanEqual&scheduled_start[values][]=" + monthname.value + "%2F" + dayname.value + "%2F" + yearname.value + "%2016%3A00&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+
+				</div>
+				
+				 - A search to find all future CMs where the provided WHID is in the CM's "Fulfillment Center" field. 
+				
+				<br>
+
+<!---->
+<!--CM Technician Search-->
+<!---->
+
+				<div class="input-append">
+
+					<input id="tchsrch" size="12" type="text" placeholder="Login of CM Technician"><button class="btn" onclick="gettech()" type="button">CM Tech Search</button>
+
+					<script>
+						function gettech() {
+
+							var obj = document.getElementById("tchsrch");
+
+							var monthname = document.getElementById("monthid");
+
+							var dayname = document.getElementById("dayid");
+
+							var yearname = document.getElementById("yearid");
+
+							var cmvalue = "https://mcm.amazon.com/search?status[predicate]=In&status[values][]=Open&technician[predicate]=In&technician[values][]=" + obj.value + "&scheduled_start[predicate]=GreaterThanEqual&scheduled_start[values][]=" + monthname.value + "%2F" + dayname.value + "%2F" + yearname.value + "%2016%3A00&num_results=1000&";
+
+							window.open(cmvalue);
+
+						}
+					</script>
+
+				</div>
+
+				 - A search to find all future CMs where the CM Technician matches the provided username.
+
+				<br>
+
+<!---->
+<!--Phone Tool Search-->
+<!---->
+
+				<div class="input-append">
+
+					<input type="text" id="techsearch" class="form-control" placeholder="Any Login" autocomplete="off"><button class="btn" onclick="getphone()" type="button">Phonetool Lookup</button>
+					
+					<script>
+						function getphone() {
+
+							var obj = document.getElementById("techsearch");
+
+							var monthname = document.getElementById("monthid");
+
+							var dayname = document.getElementById("dayid");
+
+							var yearname = document.getElementById("yearid");
+
+							var techvalue = "https://phonetool.amazon.com/search?query=" + obj.value + "&filter_type=All+fields";
+
+							window.open(techvalue);
+
+						}
+					</script>
+					
+				</div>
+
+				 - A search that opens the Phone Tool page for the provided user, or a Phone Tool search if there are multiple potential matches. 
+
+			</div>
+
+		</div>
+		
+	</div>
+
+<h6>NOTE: There is an MCM bug for Approver-based searches. When accessing this page after losing internet connectivity, dropping VPN, or generally seeing unexpected search results: close all MCM windows and reload this Listerator.</h6>
+
+</body>
+
+
+
+<script type="text/javascript" src="https://m.media-amazon.com/images/G/01/oneg/assets/2.7.4/css/application.min.css"></script>
+
+</html>

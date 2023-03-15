@@ -1,0 +1,218 @@
+<html>
+    <link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+	<script defer src="https://pyscript.net/latest/pyscript.js"></script>
+	<link href="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAWFhYALCwsADq6uoAAAIDAHR0dABlZWUAn5+fAOjo6AApKSkAgYGBABAPEAAaGhoAcnJyAMnKygAAAAEAtre2ADY2NgCOjo4Af39/AA4NDgAYGBgAcHBwAIyMjADk5OQAAQACAMLCwQBBQUEAe3t7ANPT0wBSUlMAU1JTAAAAAwAwMDAAOjs6ABISEgB1dXQAAwMDAFtbWwAFBQYAd3d3AAABAQDAwMAAAQEBAAEABAArLCwAHR0dANLR0gAEAwQAr6+vADk5OQCbnJsA6enpABsbGwAAAQIA5OXkAAEBAgAMDAwAra2tAPb29gCPj48AKCgoAICAgAAJCgoA4+PiAMnJyQC2trUAREREAJycnAAAAQMAAQEDAFpZWwBvb28AYGBgAJqamgDj4+MAJCQkAHx8fAAGBgYAQEBAAP///wAmJicA4eHhAGtrawDDw8MABAQEAE1NTQClpaUAlpaWAO7u7gB4eHgAAAICAAICAgA8PDwALS0tAIWFhQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFkYCDsAAAAAAAAAAAAAAEoRXiEmNAAAAAAAAAAAUAMbKyUrI1RQAAAAAAAASxZaP1ZUSSdHF0EAAAAAGEgrKytPUA1cAAA9GAAAAAgoTF81JVcVVQUyMAgAAABQBgcAAAlOFFIAUh5QAAAADi4vAABEXBIAAAA1KgAAADMlDx8kIlxDPFMMABwAAAATK0YPACkrDwAAWxkBAAAATSspKTY2NkVbAFsPAQAAAFhcKxk2NjYgKQAEKT4AAABAXRksGTY2NjYPGT0dAAAAABoLOBk2NgRFWzlCAAAAAAAAAlFcDw8PJS06AAAAAAAAAABSMT4oChA3AAAAAP4fAAD8DwAA8AcAAOADAADAAQAAwAEAAMYRAADGOQAAwAEAAMABAADAAQAAwAEAAMABAADgAwAA8AcAAPgPAAA=" rel="icon" type="image/x-icon" />
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jeeves</title>
+    <style>
+        .header1 {
+        width: 99%;
+        background-color: rgb(77, 238, 136);
+        color: #fff;
+        text-align: center;
+        }
+        .rsidebar {
+        display:inline-block;
+        right: 0;
+        bottom: 0;
+        width: 20%;
+        text-align: left;
+        text-indent: 5%;
+        background-color: #f1f1f1;
+        }
+        .mainbody {
+        display:inline-block;
+        width: 80%;
+        bottom: 0px;
+        }
+        .topnav {
+        background-color: #333;
+        overflow: hidden;
+        }
+        .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 10px 30px;
+        text-decoration: none;
+        font-size: 17px;
+        }
+        .topnav a:hover {
+          background-color: #ddd;
+          color: black;
+        }
+        .topnav a.active {
+          background-color: #637a95;
+          color: white;
+        }
+        .column-2 {
+        display:inline-block;
+          width:66.666%;
+        }
+        .column-3 {
+        display:inline-block;
+          width:33.333%;
+        }
+        .row {
+        display:inline-flex;
+          width:100%;
+          flex-wrap: wrap;
+          }
+
+        .sidebar {
+        height: 90%;
+        width: 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: lightgrey;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 220px;
+        }
+
+        .sidebar div {
+        padding: 8px 8px 8px 30px;
+        font-size: 14px;
+        display: block;
+        transition: 0.5s;
+        cursor: pointer;
+        }
+
+        .sidebar .closebtn {
+        position: absolute;
+        top: 175;
+        right: 25px;
+        font-size: 16px;
+        }
+
+        .openbtn {
+        left: 0px;
+        font-size: 18px;
+        cursor: pointer;
+        background-color: lightgrey;
+        }
+
+        #main {
+        transition: margin-right .5s;
+        }
+    </style>
+  <div class="header1">
+    <table style="width:100%">
+      <tr>
+        <th><iframe src="https://free.timeanddate.com/clock/i8n2942b/n137/fn7/ftb/fs12/fffff/tct/pct/pl5/pr5/th1/ts1/ta1" frameborder="0" width="25%" height="30" allowtransparency="true"></iframe></th>
+        <th><iframe src="https://free.timeanddate.com/clock/i8n2942b/n394/fn7/ftb/fs12/fffff/tct/pct/pl5/pr5/th1/ts1/ta1" frameborder="0" width="25%" height="30" allowtransparency="true"></iframe></th>
+        <th><iframe src="https://free.timeanddate.com/clock/i8o7pq5h/n94/fn7/ftb/fs12/fffff/tct/pct/pl5/pr5/th1/ts1/ta1" frameborder="0" width="25%" height="30" allowtransparency="true"></iframe></th>
+        <th><iframe src="https://free.timeanddate.com/clock/i8n2942b/n867/fn7/ftb/fs12/fffff/tct/pct/pl5/pr5/th1/ts1/ta1" frameborder="0" width="25%" height="30" allowtransparency="true"></iframe></th>
+      </tr>
+    </table>
+    <a class="weatherwidget-io" href="https://forecast7.com/en/29d13n98d16/floresville/?unit=us" data-label_1="FLORESVILLE" data-label_2="WEATHER" data-icons="Climacons Animated" data-theme="metallic" data-highcolor="#f70002" data-lowcolor="#0250f8" data-suncolor="#fff590" data-cloudfill="#ffffff" >FLORESVILLE WEATHER</a>
+    <script>
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+    </script>
+</div>
+<nav>
+    <div class="topnav">
+      <a href="home-personal.html">Home</a>
+      <a class="active" href="workhome.html">Work</a>
+      <a href="home-manage.html">Network</a>
+      <a href="bills.html">Bills</a>
+      <a href="fll-manage.html">FLL Admin</a>
+      <a href="#about">About</a>
+      <a href="#about">About</a>
+      <a href="#about">About</a>
+      <a href="#about">About</a>
+      <a href="#about">About</a>
+      <button class="openbtn" onclick="openNav()">More Options</button>
+    </div>
+
+</nav>
+</head>
+<main>
+  <body>
+
+	<div id="mySidebar" class="sidebar">
+	<div class="closebtn" onclick="closeNav()"> x Close</div>
+	<div>About</div>
+	<div>Services</div>
+	<div>Clients</div>
+	</div>
+<div id="main">
+<button class="openbtn" onclick="openNav()">More Options</button>
+<p> (your body text here)) </p>
+</div>
+
+<script>
+function openNav() {
+document.getElementById("mySidebar").style.width = "120px";
+document.getElementById("main").style.marginLeft = "0px";
+}
+
+function closeNav() {
+document.getElementById("mySidebar").style.width = "0";
+document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+
+
+
+
+
+
+
+
+        <h3>Daily Work Links</h3>
+        <DT><A HREF="https://amazon.coupahost.com/user/home" ADD_DATE="1524066692" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACnElEQVQ4jY2RXUhTYRzGf+82p8fNPEelkMqNpmbUhRF9kVCBfRHEgi76go2gKyOloluLriMDlYguqosgvMiCpBmhXhSBUhsaRvmxgaCNqWfzzH20c04XwzJT6Ll8eZ6H3/P+BWspMNcNppsxtRuQ2VLWhjC8HC9vW26z/RPsGA+DGa4rEo7LVVL2+rh6E9D3KZYTX5NmrQprFATmusGQmVqIkjYObkxmtGtu2TlaLydNRMGjvetq9/REo4Md4yZwnyZPC4DlT5chX6gsckXOVcltRzZgICSAizUljru75cJwSmcwrK1HkGRTCfTG/AAijz3mxyrqysqk8z2NFcpepcC5ctlA7CcAlZIlMqzpi2dC2jaEZaegc8yLKV4sN99r3EBLrWPVv301ndHvhOLqUDT7DN/mq3mCrpmzZHKtN7Y7XVe2lkguybJq+P73JD2DYXpVKf8gCAnezLYhaP7eUBqpLra6AIKJHHKBBfcqRdMZI3Oqb1Ybmkp1kc4+FwRmVaBUtgl2Gbn4u28LpW7Frk+e22QFUHMmsk1w+4uGy2HF75bQTTTb2zkdw/CK39XtE48Rpg/g8clKfC6J/liW0HyO5ppinkRS+F9PIxdZs+6aUnswZQDE84wd47eWworTlvS5JFK6mbnUG808HVEXARoq7AkANa3bgyNz7zGMwwjLoaWRrYCK3fZg/w5lBqDlUzw1qWYLP02ni4cTuR8eh3Ud5dJnAEwOMKGpHFWC+YImj6DJo1DllD6oOc+ujwnt4ehCaGmdP7hQ0h5JD6DYEwjzNBDGNA7lD7FcgVg/iINgDjAW7/9NVi2/BHwAHCv/K7PiTiIMPMFu9SLMYB5XvMSw3ALiQIj/1r1Jmc6JPjom6wHona8nEPOutP0CiHEMGjjKeDcAAAAASUVORK5CYII=">Coupa Home</A>
+        <DT><A HREF="https://mcm.amazon.com/reporting/approver_dashboard" ADD_DATE="1524066673" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAACI0lEQVQ4jVWSS09UQRSEq7r73pk7DyYEBCFo4koeaty6JCYaXfkPXPqjSFy41IBLF2qiBo0QHOIroGJGCTBiBiYOz7nc7nJxAWPl7E66U6fq472pN6mXISUBJOGDkshc6C+/X+sUIyOJJE7kUq9uFvIHBEFI8iFMXuxLYvN8qdVTdEEBJCSQzpD5CCABUACBzOvO1SEJL79sVYpOkkgARkH/RvBePgiAgL2uv315cHK0f/cwA5Hb4uzHtSCRlECgGBsflGahtxQlkaWhAZ582ny23KrEFoA7WytKyi0KWG7uVAvufH+Sef3c3t/eOxodqty6NGjIp0u/ywVnUh9SH9LM+6DOwdHDhfUHb1c7B1mQZurNmfrGQeq7Wbg5MXBjbGDnMHPHzghj6INGepPMq9HaL8W2HNtyIckCDLGX+uvjZypF6/J0JeR5B2l8uPp5vRNZMz5cXfq1y7wdyBB9lYLBf9LOYTY2VF3d3v/e2p0Y7ukcHAHyQZWCra/+uf961fGkRhKRNYM9hd5ydGWkBqCWuIFqgWQ5tnM/2o8W1mNr+GFlU8exCoQlgmDIyDIIkkqxnW+0p+sbkbXG0E29aqT+GI28akgk7147VyvFSWTnGu3pdxuxs8ZQkut0s+7RCUskAEmGzIKqBffqW+vxYrPoLE1OJ5wzxluc0AoeU4hS7GZXtmYWm4mzNDjdOuUCTi8JUhLZ+Ub7xddW0RkaSDj96y+DfUPFQUlaBAAAAABJRU5ErkJggg==">MCM Dashboard</A>
+        <DT><A HREF="https://review.access.a2z.com/" ADD_DATE="1562168143" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADEklEQVQ4jXWTf2jUdRjHX5+77dRtFwzums1NVE5329pN56/paLMsYxI4RUFIwSRdIDQ8VFbij6L+CSGhLJDUijIxqmX4C8ecU1t581bn0G2pd3nzOtS1tZu37/fuvt+nPzYPguv91wPP87x5v58fiv+Bv6SkUNnUDiyqyDTM9+b39AUy1SmAMy7XJIctlZ9lnTzTAvNFqXqUeiln7rzsbIeTkbZWEcO4BnJKMH81U6k/GNYeLYhE4grA7yn9XSnlUTYbk2fPwb5oMaq6hpbeu6xZuYL8lM7QubPEOq8Sv3kTczQGgPFwOFcBdFeW9hTt3lceKCjmt1t9XL3mp+OXLvREgkDbj8woLkpLFhHG+nrpX7+WKZrxVNaEE2XNy2PLrn08HPz7Px7Xv+Gltnoh3sZNTH3aiVIKq90OwLBhKMtEXcJMJJlks6Ub3a5ZHHz3bbyNrxEMD/Bcwwb+HLg/riKZBMDUtPHA7yltjR47IrUNr4rdVSWVy1fJSGxUniA5MiKbm5plw7adIiIS81+X7sqyUQDLhLHbeihIiWsWABvXrmKKaZCIRNAj97mzdTOvv/w8rZd/RkTQQkEQuZMmUIrO0es+li1dBEBWlhUjFiPofZOQt4nive+QM306hmEC8LjLh4h0pgkMzTyth8PJ5YUO7Hm5nGg5DQ4nMw9+zIwDH5JTWsbnJ3+gtnoBpjbGP5cuYlXSAmAFODw4GG8scJRZdf3Z3GUv8P2ZC3R0+nBMKyQa1/jg0Gd8cbKFhvoXmZeMM/TTqbv9gd7t34Kkpx6omOPurizTH7S3Sd2ajWJ3VYndVSWzl66QTU3NcvSb78RZvkQOHf1KhjsufZr5/ivczYG6Ggn7fFK7enwjwXthERFJxWJy/kKbOMuXyCfHjpsisi3jb3R73IcDdTXyoP2i7D/wkQxE/pKxUEhurVstoeZdPefbr+hbd+wRETmSfqYMJG9hse7PX/lKdnbBVB59/aWY+thxS3So0RON1gM7gTqllJaJAICuCneFRfG+Qj0jYuytutF/9klORGxKqQTAv6HodHJ2b7GOAAAAAElFTkSuQmCC">Access Review</A>
+        <DT><A HREF="https://clarity.amzn.moventus.com/" ADD_DATE="1564420168" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABy0lEQVQ4jZWTy2sTURSHvztz0+YxpomVgaQWGh+RuhCD7ULqTnDj438QjOBKpMvi0mXBhbu4EPwTBMGFuKgIQgtFK9SKTX0Q6dCQTpq0eUzuuIhMcpv4OqtzOef3nd/l3iMu3VlKqo437yPy4Nv8UwhH4BcMUy7KrpgF8Ie2RsMmjZZCqf66b/uwoDoe8tdkTZSdtLg6lyJ3eowTEzEaTcWHYpV3n11evN3mu3PQxSDy8rDtU8ctHs2fx4pIzcXsdJLZ6SQvlx3NiewXp8bDPLx7LhBvV5osre6QPhYml02w8a3G1o99za0GuDxjczQ+AoBbb3PzwTK7e20AQtIgHtPaATD6D2czR4J8dcMNxABtT1F2W38BTMV7gE+7A83DQgNEw2aQq+Gv+mdAaacR5BfOJP4fUCzVgzyXTZCwQlqznRwdAIiLt18FZjPpGE/vz2AYAoCy2+LNWhkBnJywmLQjXLn3WgNo71Is1Xn8bIv8jQxCwPjYCNfnUkG9tu8NOJAgnP7f+OT5F95vVrl1bYpMOko8FqKy1+Lj1xprm9XDF3CkwC90l6kXK+sVVtYrAERGTQ6anYHJAAK/IA1TLqqOx+/Webi4t84/AXsioUqRg6ElAAAAAElFTkSuQmCC">PPM</A>
+        <DT><A HREF="https://permissions.amazon.com/" ADD_DATE="1580919068">Permissions</A>
+        <DT><A HREF="https://policyengine.amazon.com/dashboard/joseheat" ADD_DATE="1644759351" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAACuklEQVQ4jQXB225UVRgA4H8d9prZ0yl7p+1MmVYsFosVpOBFW4VeEIKJRkm8UV/AKxPjy0B4Bbww0cYQQWM0BFO0EsGkSVNTmANDtYeZ3T1rH9bh//0+duvmzVqtqrVGQA4kpdC5BsB0dKyUiqOJAB2vRZyDzkaFcdzY0pgyjsZnmtPTjZPVakjo8iJjjDeapxZsnz29X6mGRBCoapIcSWcLJ8XhUVaUOjkeaJ3Gcfzhe9e//mb95e5Pf7n84rVPkuTfOJoyaXl+cUl2e22lFDDKsvSV2bmZ1uyDh79tbd1GxEGSTE025lrTI1136JrNaaWUPP/GW0ywaDxSgRqOkoOD/UajGVZDj1j97+Vrp+d7/U5yPOjvdYGxQCpprPGlAyDBgXGRHA/PnV0MAgXALq+886yzu7n5cKxet94PhwNElEf7L4y1ySjJsxSJbtz4+NLFpXo9lFKkaT7Tind2nh4eHTAmGGeATHa6z3NTZFlRmvKrL79Yu7JKwIAREJucqk9OLs60Wlvb26qirDVCSNnu9Z23BKx1cvbdlVVnPeeMAICAALjg82cWNp/8XZgSgBV5wlOtx8bGV5YvAw/QOW8dIpFH75A8mtxKXj335lJYHZNSIDF5/eq1j97/oDERdV/sGWOICD0yLjgHj8wYs/z2heVLF3bave++/9aYLnvy6z3nDJPBUOuFM68SoVRCVSqcC0Qq8iJJdGFKDsyhu7O+LpPBvkF83t+bPz1XaM05Z7ziuGWcvHe5zju9ThxHzpaBqHz+2afi9flT9375eePx5trq6kQUWWsAgCwaY21prHUbj/9Y/+FuFEXxidrh4YGwmKfZSAbq6pW16MQ4ACNvrbFEgIDO++1/dh9sPHr05+8iUM3mlBScWU+1MBSMO+u4YM4TenJYciUJqTRWcsF4ePf+j8/a7f8BqsSU/LUjO2MAAAAASUVORK5CYII=">Policy Engine</A>
+        <DT><A HREF="https://www.coe.a2z.com/reports/orgreport/joseheat/details/open-coes?actionItemQuickFilter=open&analysisQuickFilter=open&" ADD_DATE="1637080192" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAC9klEQVQ4jV1TS4hcVRA9de97t2/f19MZk/FD0AHJYiQgkiCRGFGjBkSzUpCIuE26FSW6cft27iVJdyvusxEEEQkTNB8XMgvHWTgMKIKBJE4iQ6b73ffrd6tczDQMnm3VqTrUqUPYA0mhygX7xLSMfWQaW5OJW1QxYggACFNw/eL2Xg4BgABEgJSXktdY6dNEUghjhUiNicQGFtJEjRAdVSR/tc6OL8840e4UKUZ2kYXmXW98vh7MHxEKi76s/th/vrw121YPk7sB+u3JAI9QH/cAQMmuCoh5sV1mNwHA9B+sSqDfrTWfZIPu+8XILgJAI9wC+CeN+RN7lAN+4I5oHR+wZ7evSoqoOjj3OrGyebF91TjXVhS9Qk3YhERKomoDiBd1w5n50P9Gd0Zw87TvdNtuf18WnWMQfUpEvnX98creY/mhe1aR+bhp8s87Uf1nyXPvWTu5rB6S5DhYdO7dSWZ6kgV/i5bH6kH72Iycj9rPgfVBgvwMZTSdw1RA62WVnFCk9FtKwtb2Zv6ji+sbDcuvLpsss8QH8kH3TP5l94yEeMGVk+XQyCqRaABw/fEKQS9FCtgwfX8FALKL3DGkHH2KAhj/UA6TUw0DnQ/8MgAUl5SDrv+VrzGX1+4lBp5SzGEjvzj3PACQxEokTGdPFVi2iGVLUqgdp0KQJnozr9wLhKhDzN+ou//4m0xYkhSGoSod0avVKHmaUnCsqAGBKQX7C+4oNJYCsO7K/JoWCrbMVggAsmHyTAu0r5HmFpM5rMCZIFoQDqyJi0DKaOG6temvU4rSD7tvxAi3Tc+vKQGo0/Nr04CFEPQhhOZ+u5fdkGn9i9b0uKjoHU31uu37K5SizL5KHhXGftPzawKQIuwEpS10XWt9UkBTAEg+yu/Yc+MLFvxZJOZwvmtrHKKXVTO9NosAAUAKqBTgfNh9l4BDTFiF7OREQJUSaSuljkPEAuE72/PLszAR/ofJF52HSYumaLdWg5ylAOVzXyZJct/foxQ86/8P82V+Q44lzRoAAAAASUVORK5CYII=">CoE Report</A>
+        <DT><A HREF="https://amazon-mentoring.chronus.com/" ADD_DATE="1649337727" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACuUlEQVQ4jY1TS0hUYRg9/316587LxzBlKlYbC2wTgVKGFPTQihJmTNMk3ZTULNLAdrdltIkgQbCkIB+jlBVJQRlkUAglIkUtgsxmfDs648ydO3Pv/VvIhA4Snd0P55z/+8/5fuA/ccVf5lIUMAAAv4eFonAACNmM7PGD7ffABAH1+Mut20ypzQBXp1KzvrPmxch6broBAUBTB0UBs7zr1ENHru1ccFod1dSVii/xnWrQmVs1y9jtps4PcmkGtP7WHjmnMP8kYuqI0jAc8PUa7+anIx9nI3jwU9zrWM3MeBLm5DLTuRWYU40NEzT3HMmXeGkIoAUJPXaUMTjHDOsKhKmtlKehZ6NMUUskN+9adJUHYniLcEb1Wihr4RABQhPHM1lJLX7INPmShGR7SS3yhM4ytU9re+ZmqDAUDSVvQ2V8WFRPoNE7vzYBBQEBbfaXW/Uo8iTZ2hAnYtuSaTPm2Ux2Ek41aIjVWnXb8/TA/z6h8f7hHfKqEGC3YH9StL2Z0yR9Hk72N+zaAhGvL2v8AITtMkJfpzCNOBSFAqAMAFzurmx25di/sy5S8810R2Z1BxYEFxdgHPqSIdQvGwWvIBd2QpTHkV3aAftuMdUW5+s+1mB1SnfVWHI6kqDjEm9kJhOi5xcjFS0QUVtJ5H2AhfkEwe5GUgCoXokczgZABUA4BpxbjSaGw3qs9V7D67HiRy0HJzjXKLxtAwCAgb4aWLPdiAEQRSChd+B81VxqZzbUWNJ7tX3BknkxGOc/x6LxA7igxOEfLAZjuQPCOGDog5gxb8JXoaU0HBQwUGDu62v1hTJsl6aIAxphFzEZTwAAvKcn0NV1HLxbQF1FeLMWCACa13/j8WJW7hl1UQ+AE86iqul9+mqDUgJC6HoDLkWYMS3teij5AwbphrdpLCXZcFma+F/Y9Jduhj9UKRjB05nhyQAAAABJRU5ErkJggg==">Mentor Portal</A>
+        <DT><A HREF="https://serenity.corp.amazon.com/reports/powerbi/OpsTechIT/WHS/OTIT_WHS_Trg?rs:Command=Render&rc:Toolbar=false" ADD_DATE="1649707979" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABGklEQVQ4jcXSP0oDURAG8N9uNkgUQRFBEAsFK2vtvICdhbXgHezFewiCIKh3EA+gWNlbeQEbCWbXIvPCyyNbOzDMm7/7fbPDP0iDKzxit6+oDs2lCnuAMTpcNz0D2gWxKpqW8BP+sPxKgniO0x5EbTQP0DVFUYsT3GKCQ7xHPKGqMlvlCFJiK4oH2IjYWaASNFKtppgIvxnfb9OlPUTsE18ZHXUUdtE4gxY6wWbGfTvbwWzADm5wmUHMaU2yd45uRuEidIy7sKVUfX6NUUwexzttO1ErUc3Fm4BYF4nykDrzv7FL1BoMY8BKJPKjqRf4LZbDH8AxPvAUw/ZNj+cZ66a38II37EXNPV5xlCCuRSLJauwjyShiSRJif0x3QT5EyME1AAAAAElFTkSuQmCC">OTIT WHS</A>
+        <DT><A HREF="https://na.engage.amazon.dev/engagements" ADD_DATE="1660684666" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACVUlEQVQ4jXXTz2tcZRTG8c+592YmZiSlTX8oglahXaTF4kIFseJCUVGELuK6rkqzsyqShTJ/QNGFxtKCbnSVICK24FJBpUVEUCxoNyoEqjZJaxLJJHPvcTFDm1r6rN4Xzvm+D885b7idut2Cycrq7yN67VI1VinqQr8otTZCNIXeaB23NL7y3gFlcVTGPeQ4xtAW2ZJRoUApFNLqDcD07J3G4jj5pIyn0Lqtuxtaq8Abp+/V7z+iMSFiFF/gMSwQlwa1uQ+H8AvxE1kIq5UTp17Qrwcg8atoLsno46DId52c/gC89v6MdEjknJPTb5maKx24mJXNzQvoGakmRT5IjAnIJfLKFrs7BkaKa2D+pdr8IJCe0fYuYqfMDbRl7pGxXRRLQ/uB3cPzVqhCVT2kqY8q/Gak+lTmOrEHLf366mCk8yNDQIO/bga8M/2Vsj6lcUTdPKeJz0V8jO+UVsHi5VFyp7QumqWtgEF4V1t/G2s+knVHWUyRB6VdWvEPKNsdWW8TepRrtwLOHNv0+ux+WT4hbR+O7Jp2Z1Ac9R3ooBD1YD+63cLK7hcLMrw6+7g69snmZ9HsxaPCgu7L64Pcsj18bFwTh03NlVbu3i8cKczM7qDoKIxLbemBYdPF6z5Hqg1iA0G86b4rZ6nnpT8L/WJSY1kK4mnifiwTX18HdFoLOD+8TUjPEkn5Yenbc384f27BMw9/o9e5S9grnLFSfuL7sw348rO+w8//KG0buHBB5oy3j/9w82/snh6z2OuYWFrW7fb9X925lsXL20y013SP/Qv/AXV51agoqCyRAAAAAElFTkSuQmCC">Engage</A>
+        <DT><A HREF="https://sitemon.corp.amazon.com/home" ADD_DATE="1662049748" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACkElEQVQ4jXWTzUuUURSHn3PfcbRJMwt0HBu/UscIFBSLJgik6EMjEjTahWUtpHWLqET6B4IoCGoTRJQGZYtRK6JdEkWUJY4OvH7UVBKZlYwx73tajFOT1Nncy+X5Hc7vnHuEf8Rg6Z7NitWu0L6zJ4br6p2kWP15XWOjK1lJXyIb9tapSLsRaVfYlH5v7ollwmNAPy792cfHXwFIJNhyHjiEUAMgliG3pgxfeTHe9WsJtc6hic/o12l0fgLUTeeLqtLnQfQoSACgvOsgld0dqKvMPx8j8X4Oyc/DBMJIUSMAzqsrOG+uA9SI0OkBsYGArzxA7dnjzNwc4u2ZS2jSAcCftmA8ZDVfwLP1NI49BD8+ImB7RLFVCFs5XgAS8TlKj+zn04MR1ofrsWq/gK8QU7wFU9SwnMybboptXNTO7KfJ9jL/Ypys/Fxyq4KwphScJZyxGzjjfcuoBYDr6pRHRKdSYgVgY3cHBQ21fH76mu+xGdg0B6sLsUKHMf6mlN4YNHXaRlXszLnO3hpm9tYwIkJeqBwpqAYEJ9qHE73z9/QV26Ou2MsVAVByaDc5JYV8GXnNwmgMt+oT4vNjVbVhAtv+/kUOtpFVOgW4qikL724PE7/7GJPtpfZsF56mU2Bl48QG/lSQYjWelZg2LZORJdAPPyZniN97QknHLvz7d+AsJnCWfkIyAclFrMoWrOo2nMkBdMFGlQ8VnXZCAAaDrRdVtBswvrJi1oXr8AX9ZK3NI9C4gC7No99m0fgI+m065R69nHMsevL3LgxW7KknafWqcICMHcncheVR3TeO2+M9MfGSTDAdkeDeJsH0qrBvRYJBY/SctzP6bKXmnzFU1hqOlO57mLgWerR4NbT9f9wvF6n/bkBCIxsAAAAASUVORK5CYII=">Sitemon - Homepage</A>
+        <DT><A HREF="https://sn.opstechit.amazon.dev/now/sow/home" ADD_DATE="1662991767" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACNUlEQVQ4jZVTS08TURT+7tyhLbW1LZaMVqLVWhwKGBRd6QJicGWNXRAghGAiulIX/IFOEzcmxB/g0oiJYGyCCzaa+IKoMfFBUREpXdhUEktoLe10Op3rYlpsmCbitzs353yPc3KB/wADuB01MYBU62xo/x71UntwMQBTvX4DIwE0AjDWDwoAdK/FqxFyy9/VOZ8f7ghVRLYE+G3qRB0V+8oyFyQPPl8HAP642cc5yQa3UCpwP8oWACSiEzADQW7AL5pUep+2lmMfgz0T6y+bT+St75JOTxkr8y3JhUctCtgyJKIPGyLYHMvfZaF4nj9JzMKx3Lrym7ttPVhcRFZJqnOMunapd2fIUKCqXolsxMrVww7fnXhmy9nFwFmTQ4t8y7jfuNqzmjuueEubxWu2mdU1w3B1QQwgEsAxCRxY5S1hH9Pe7vsq93fElVGx27CDiiX9Au1g4bBulUVAnthCYvZFLG/1bn5BAw7UvQIASABHplHGtF4AwKujva28nUaLU7tT1ibyWi6Vxku59K968fUYY0cuKyOBG8ondzd7LhwCGJlr6xksjAR+ysPiuW2O/2YnAJv1XBgUfZlxwZdOmK+kO6FgkiXsMdrESfJ7NtEoLd1jAEcADag5Y5XJQjW2tio4Zh/7ntHTqTbam7oJGz+k5fmpxvDSZEVIMzioRdTb5Twlos/lVv2UMY9cLESdD+NPqy5rew1/gQF8KPFho9kt8yYzOUN5CJQ0MCbt4CfW282/8AdkI9IqksxUsgAAAABJRU5ErkJggg==">Incidents | ServiceNow</A>
+        <DT><A HREF="https://approvals.amazon.com/Approvals/pending" ADD_DATE="1664374914" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAABx0lEQVQ4jV2SP2tUURTEf3Pfyx8XXbRIFDQYC0GQWEgs3EbsbK0FRUgn+A208DtYpVcwFtqnUkkUsUuVQjFokk0hiUnMmn33jMV7u8QcLpdbzNxz5szItm1JADbHSoCwmweUNdpDaM0clsGZVGDAghIYoo3UP4AMMsYiFZTjVD2QilFAEQHgsBLr7+kuMX4GBxL9Hpfv+WCLxQfcWVB7Wpicsx256me7Wn1RbX3JUeXeTu7tZDt3P+f5c3llPkfkXDki1QIkyVZ5QlWP3g5jbY21vbnklx3PzPnqHFFJyZAASWBLKka8t+ZXN9lc9o9Fvb7FtYe6cFuO4Soa0a5lHu5pcpbrj73QIaDzTFfu0/0oZJREhEvbKQnLMkrYzDzS/ibR58YTtlet2oKmR7MlRyYlvr1h9zsnp0glgCt+r7k9rUt3iaxUHCHYSomo2F7F0XxnocSpi5StgYtgR86Rq795/V3e/Rl2ffLgzl/f5k9P8+F+RDhyaSNsFYy0vfLc0ac9Reu8lOJPV/sbHjtNa4LITXKOjuSo2PhAd5neLxCtCc52mJzFohjFkTQg1OlA6Vj46nU300Ptr/8PrHFmoBoVTcTrQMA/tjQveaRt28sAAAAASUVORK5CYII=">Amazon Approvals</A>
+
+        <h3>Tools</h3>
+        <DT><A HREF="homepage.html">Home</A>
+        <DT><A HREF="mcm-metrics.html">MCM Dashboard</A>
+        <DT><A HREF="talent-review.html">Talent Review</A></DT>
+      </div>
+      <div id= "main" class="main">
+                <section>
+                  <py-config>
+                   [[fetch]]
+                   files = ["./utils.py"]
+                  </py-config>
+                  <py-script src="./todo.py">
+                  </py-script>
+            <div class="text-center w-full mb-8">
+              <h1 class="text-3xl font-bold text-gray-800 uppercase tracking-tight">To Do List</h1>
+            </div>
+            <div>
+              <input id="new-task-content" class="py-input" type="text">
+              <button id="new-task-btn" class="py-button" type="submit" py-click="add_task()">
+                Add task
+              </button>
+            </div>
+            <py-list id="myList"></py-list>
+            <div id="list-tasks-container" class="flex flex-col-reverse mt-4">
+            </div>
+              <template id="task-template">
+                <section class="task py-li-element">
+                    <label for="flex items-center p-2 ">
+                      <input class="mr-2" type="checkbox">
+                      <p class="m-0 inline"></p>
+                    </label>
+                </section>
+              </template>
+        </section>
+      </div>
+</body>
+</main>
+</html>

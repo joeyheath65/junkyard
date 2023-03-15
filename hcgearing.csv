@@ -1,0 +1,70 @@
+﻿Business Unit⇵,Site Type⇵,Site Sub-Type⇵,Gearing Ratio Total⇵,L5⇵,L4⇵,L3⇵
+GCF,FC,AGL,0,0,0,0
+GCF,FC,TNS AR,6,0,1,5
+GCF,FC,ARS,9,1,4,4
+GCF,FC,HAZ,2,0,0,2
+GCF,FC,IXD,4,0,1,3
+GCF,FC,Kariba,2,0,0,2
+GCF,FC,MBA,1,0,0,1
+GCF,FC,Mixed,5,0,0,5
+GCF,FC,MOD,1.5,0,0,1.5
+GCF,FC,TNS,3.3,0,1.3,2
+GCF,FC,ReLo,2,0,0,2
+GCF,FC,SnL (small and light),0,0,0,0
+GCF,FC,SFT AR,7,1,3,3
+GCF,FC,AR Quick Deploy,4,0,1,3
+GCF,FC,SFT,4,1,0,3
+GCF,FC,TS,7,1,3,3
+GCF,Supplemental,Permanent,0.25,0,0,0.25
+GCF,FC,Supplemental Temporary,0.25,0,0,0.25
+ATS,SC,AIR GA,7,1,1,5
+ATS,SC,AIR HUB,6,1,1,4
+ATS,SC,AIR Mega Hub,20,4,4,12
+ATS,SC,SC AR,3,1,0,2
+ATS,SC,OXD,2,0,0,2
+ATS,SC,OXD AR,2,0,0,2
+ATS,SC,SC,1,0,0,1
+ATS,SC,SC AutoSort,1,0,0,1
+GDS,AMZL,DS,0.25,0,0.25,0
+GDS,Delivery Station,AR Delivery Station,6,1,1,4
+GDS,Campus,PickUp,0.1,0,0,0.1
+GSF,UFF,UFF,0,0,0,0
+GDS,FC,Heavy Bulky,1,0,0,1
+GDS,Delivery Station,Heavy Bulky,0,0,0,0
+GDS,FC,Pantry,0,0,0,0
+GDS,DS RSR,DS RSR,0.2,0,0,0.2
+GSF,AMXL,XPT,0,0,0,0
+GDS,XPT,RSR,0,0,0,0
+GSF,SSD,SSD,1.5,0,0,1.5
+GSF,SSD,SSD AR,4,1,0,3
+GDS,Distribution Center,AFO,0.1,0,0,0.1
+GDS,FC,AFO,0.3,0,0,0.3
+GSF,FC,GSF Hub,2.5,0,0,2.5
+GDS,Delivery Station,Sort Center,0,0,0,0
+GDS,Prime Now,Prime Now,0,0,0,0
+3P,Delivery Station,Delivery Station,0,0,0,0
+3P,Delivery Station,Heavy Bulky,0,0,0,0
+3P,FC,Sortable,0,0,0,0
+3P,Sort Center,Sort Center,0,0,0,0
+3P,XPT,Delivery Station,0,0,0,0
+3P,Delivery Station,XPT,0,0,0,0
+3P,FC,Non Sortable,0,0,0,0
+3P,FC,Mixed,0,0,0,0
+3P,Air,Hub,0,0,0,0
+CoLo,Delivery Station,Heavy Bulky,0,0,0,0
+CoLo,Delivery Station,Delivery Station,0,0,0,0
+CoLo,Delivery Station,RSR,0,0,0,0
+CoLo,Distribution Center,SSD,0,0,0,0
+CoLo,Distribution CenterAFO,,0,0,0,0
+CoLo,FC,Kariba,0,0,0,0
+CoLo,FC,Returns Center,0,0,0,0
+CoLo,FC,AFO,0,0,0,0
+CoLo,FC,MOD,0,0,0,0
+CoLo,FC,Hazmat,0,0,0,0
+CoLo,Pantry,Returns Center,0,0,0,0
+CoLo,Sort Center,Returns Center,0,0,0,0
+CoLo,Sort Center,Sort Center,0,0,0,0
+CoLo,Distribution Center,GSF Hub,0,0,0,0
+,Additional Sites,SeaCore,0,0,0,0
+,Additional Sites,Vendor Flex EU,0,0,0,0
+,Additional Sites,SortCenter OffsiteParking,0,0,0,0
