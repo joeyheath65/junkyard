@@ -8,7 +8,7 @@ cmd_str = "pip3 install requests"
 subprocess.run(cmd_str, shell=True)
 
 
-sudo apt update
+
 
 import subprocess
 

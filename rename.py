@@ -1,4 +1,6 @@
-import os
-[os.rename(f, 'L3_' + str(f)) for f in os.listdir('.') 
-if ((not f.startswith('.')) and f.endswith(".xlsm"))]
+from urllib import request
 
+data = b'{"HEB": "test1", "parameter2": "test2"}'
+req = request.Request("https://whois.arin.net/ui/query.do", data)
+resp = request.urlopen(req).read().decode('utf-8')
+print(resp)

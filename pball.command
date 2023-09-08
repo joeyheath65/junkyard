@@ -22,6 +22,5 @@ print('5 most common numbers:')
 print()
 for x in results.most_common(5):
     print('  %s - %d times' % x)
-
 print('')    
 
