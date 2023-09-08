@@ -32,4 +32,3 @@ while True:
     # update the bytes_sent and bytes_recv for next iteration
     bytes_sent, bytes_recv = io_2.bytes_sent, io_2.bytes_recv
 
-    <iframe class="facebook-plugin" data-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FFloresvilleLittleLeague&amp;tabs=timeline&amp;width=500&amp;height=500&amp;small_header=true&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true&amp;appId" width="260" height="326" scrolling="no" frameborder="0" allowtransparency="true" allow="encrypted-media" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FFloresvilleLittleLeague&amp;tabs=timeline&amp;width=260&amp;height=326&amp;small_header=true&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true&amp;appId" style="height: 326px; width: 260px;"></iframe>
